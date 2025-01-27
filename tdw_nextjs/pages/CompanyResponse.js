@@ -41,5 +41,8 @@ export default async function GetCompanyResponse(context) {
         throw new Error(`Failed to fetch company data: ${res.statusText}`);
     }
     const companyData = await res.json();
+
+    ForbiddenRoute_afterAPI(context,companyData);
+    RedirectRoute_afterAPI(context,companyData);
     return companyData;
 }

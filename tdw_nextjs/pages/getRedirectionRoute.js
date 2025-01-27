@@ -2,8 +2,8 @@
 export function RedirectRoute_beforeAPI(context) {
     let pathname = context.resolvedUrl; // Get the resolved URL from context
     const domainName = context.req.headers.host; // Get the domain name from the request headers
-    console.log("From Redirection !!");
-    console.log(domainName);
+    // console.log("From Redirection !!");
+    // console.log(domainName);
     pathname = pathname.replace(/^\//, ""); // Remove leading slash from the pathname
 
     // Define redirection mapping
@@ -26,16 +26,16 @@ export function RedirectRoute_beforeAPI(context) {
 return false;
 }
 
-// export function RedirectRoute_afterAPI(data, url) {
-//     console.log("Redirect after API logic starts");
+export function RedirectRoute_afterAPI(context,data) {
+    console.log("Redirect after API logic starts");
 
-//     const URL_DETAIL = data?.URL_DETAIL?.URL;
-
-
-//         console.log("Redirecting to https://www.revomac.net/");
-//         return "https://www.revomac.net/";
-    
-
-//     // console.log("No redirection required for URL:", URL_DETAIL);
-//     // return null; // Explicitly return null if no redirection is required
-// }
+    const URL = data?.URL_DETAIL?.URL;
+    console.log(URL);
+    let pathname = context.resolvedUrl;
+    pathname = pathname.replace(/^\//, "");
+    if(URL == '/revomacindustries' && pathname == 'redirect_after_api.html'){
+        context.res.writeHead(302, { Location: 'https://www.revomac.net/about-us.html' });
+            context.res.end();
+            return; // Prevent further execution
+    }
+}

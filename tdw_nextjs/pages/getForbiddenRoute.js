@@ -50,17 +50,16 @@ export function ForbiddenRoute_beforeAPI(context) {
   
   
   
-  export function ForbiddenRoute_afterAPI(url, data) {
-    const URL_DETAIL = data?.URL_DETAIL?.URL;
-  
-    if (!URL_DETAIL || URL_DETAIL.URL_STATUS === "404") {
-      // Create a 404 response and terminate further execution
-      return new Response("404 Not Found", {
-        status: 404,
-        headers: { "Content-Type": "text/html" },
-      });
+  export function ForbiddenRoute_afterAPI(context, data) {
+    const URL = data?.URL_DETAIL?.URL;
+    console.log(URL);
+    let pathname = context.resolvedUrl;
+    pathname = pathname.replace(/^\//, "");
+    if(URL == '/revomacindustries' && pathname == 'forbidn_after_api.html'){
+        context.res.statusCode = 403;
+        context.res.setHeader('Content-Type', 'text/html');
+        context.res.end('<h1>Forbidden: Access to this resource is restricted.</h1>');
+        return { props: {} };
     }
-  
-    // No further processing; this behaves like exit in PHP
-    return null;
+    return { props: { message: "Not Forbidden" } };
   }
