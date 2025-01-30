@@ -1,7 +1,8 @@
 import './Catindex.css';
 import { useEffect, useState } from "react";
 
-export default function Catindex({ companyData }) {
+export default function Catindex({ companydata }) {
+  console.log(companydata);
   const [headerData, setHeaderData] = useState({
     CAT_INDEX_DESC: "",
     CAT_INDEX_DISP_NAME: "",
@@ -12,15 +13,15 @@ export default function Catindex({ companyData }) {
   const [lazyImages, setLazyImages] = useState([]);
 
   useEffect(() => {
-    // Set header data and product services from companyData
-    if (companyData?.companyhash?.DATA) {
-      setHeaderData(companyData.companyhash.DATA.HEADER || {});
-      setPrdServices(companyData.companyhash.DATA.PRDNAV || []);
+    // Set header data and product services from companydata
+    if (companydata?.companyhash?.DATA) {
+      setHeaderData(companydata.companyhash.DATA.HEADER || {});
+      setPrdServices(companydata.companyhash.DATA.PRDNAV || []);
       setPrimaryBusiness(
-        companyData.companyhash.DATA.COMPANYDETAIL?.BIZ || "Product Provider"
+        companydata.companyhash.DATA.COMPANYDETAIL?.BIZ || "Product Provider"
       );
     }
-  }, [companyData]);
+  }, [companydata]);
 
   useEffect(() => {
     // Handle lazy image loading on scroll
@@ -75,10 +76,10 @@ export default function Catindex({ companyData }) {
                   <a href={category.CATFLNAME} className="tdn df jcc aic w1">
                     {img && (
                       <img
-                        src={companyData.changeHttpPath(img)}
+                        src={companydata.changeHttpPath(img)}
                         alt={category.CAT_NAME}
                         className="db imgCenter"
-                        data-img={companyData.changeHttpPath(img)}
+                        data-img={companydata.changeHttpPath(img)}
                       />
                     )}
                   </a>

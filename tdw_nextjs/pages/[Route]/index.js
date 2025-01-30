@@ -6,7 +6,7 @@ import Header from "../Components/Header";
 import Category from "../Components/Category";
 import Aboutus from "../Components/Aboutus";
 import NotFound from "../Components/Notfound";
-import Catindex from "../Components/Catindex/Catindex";
+import Catindex from "../Components/Catindex";
 import Enquiry from "../Components/Enquiry";
 
 export async function getServerSideProps(context) {
