@@ -1,56 +1,22 @@
 import './Catindex.css';
-import { useEffect, useState } from "react";
 
 export default function Catindex({ companydata }) {
-  console.log(companydata);
-  const [headerData, setHeaderData] = useState({
+  // Initialize state values directly from props
+  const headerData = companydata?.companyhash?.DATA?.HEADER || {
     CAT_INDEX_DESC: "",
     CAT_INDEX_DISP_NAME: "",
-  });
-  const [prdServices, setPrdServices] = useState([]);
-  const [categoryCounter, setCategoryCounter] = useState(0);
-  const [primaryBusiness, setPrimaryBusiness] = useState("");
-  const [lazyImages, setLazyImages] = useState([]);
+  };
 
-  useEffect(() => {
-    // Set header data and product services from companydata
-    if (companydata?.companyhash?.DATA) {
-      setHeaderData(companydata.companyhash.DATA.HEADER || {});
-      setPrdServices(companydata.companyhash.DATA.PRDNAV || []);
-      setPrimaryBusiness(
-        companydata.companyhash.DATA.COMPANYDETAIL?.BIZ || "Product Provider"
-      );
-    }
-  }, [companydata]);
+  const prdServices = companydata?.companyhash?.DATA?.PRDNAV || [];
+  const primaryBusiness = companydata?.companyhash?.DATA?.COMPANYDETAIL?.BIZ || "Product Provider";
 
-  useEffect(() => {
-    // Handle lazy image loading on scroll
-    const handleScroll = () => {
-      lazyImages.forEach((img) => {
-        const imageElement = img;
-        if (imageElement && imageElement.dataset.img && imageInViewPort(imageElement)) {
-          imageElement.src = imageElement.dataset.img;
-        }
-      });
-    };
-
-    const imageInViewPort = (element) => {
-      const rect = element.getBoundingClientRect();
-      return rect.top < window.innerHeight && rect.bottom >= 0;
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [lazyImages]);
-
-  useEffect(() => {
-    // Add all images with `data-img` attributes to lazyImages
-    const imgElements = Array.from(document.getElementsByClassName("imgCenter"));
-    setLazyImages(imgElements);
-  }, []);
+  // Helper function to safely get the image path
+  const getProductImage = (category) => {
+    const product = category.PRODLIST?.find(
+      (prd) => prd.ITEM_IMG_SMALL || prd.ITEM_IMG_125
+    );
+    return product ? companydata.changeHttpPath(product.ITEM_IMG_SMALL) : "";
+  };
 
   return (
     <main className="m63_wrp">
@@ -63,12 +29,8 @@ export default function Catindex({ companydata }) {
         </h2>
 
         <div className="ml10 mr10 mb30 df ffw jcc">
-          {prdServices?.map((category, index) => {
-            let img = category.PRODLIST?.find(
-              (prd) => prd.ITEM_IMG_SMALL || prd.ITEM_IMG_125
-            )?.ITEM_IMG_SMALL;
-
-            if (!img) img = ""; // Fallback image URL if needed
+          {prdServices.map((category, index) => {
+            const img = getProductImage(category);
 
             return (
               <section key={index} className="m63_prd df fdc bg5 bsb br5 tac ofh pr">
@@ -76,10 +38,9 @@ export default function Catindex({ companydata }) {
                   <a href={category.CATFLNAME} className="tdn df jcc aic w1">
                     {img && (
                       <img
-                        src={companydata.changeHttpPath(img)}
+                        src={img}
                         alt={category.CAT_NAME}
                         className="db imgCenter"
-                        data-img={companydata.changeHttpPath(img)}
                       />
                     )}
                   </a>
