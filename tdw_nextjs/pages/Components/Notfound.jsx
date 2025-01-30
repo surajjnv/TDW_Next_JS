@@ -1,5 +1,9 @@
 export default function NotFound(){
     return(<>
-    <h1>No Data Found !!</h1>
+    <h1>Page not found !!</h1>
     </>)
 }
+export async function getServerSideProps({ context }) {
+    context.statusCode = 404;
+    return { props: {} };
+  }
