@@ -1,21 +1,24 @@
 import './Catindex.css';
-
 export default function Catindex({ companydata }) {
-  // Initialize state values directly from props
-  const headerData = companydata?.companyhash?.DATA?.HEADER || {
+  if (!companydata) {
+    return <p>Error loading data. Please try again later.</p>;
+  }
+
+  // Extract and define key variables
+  const headerData = companydata?.DATA?.HEADER || {
     CAT_INDEX_DESC: "",
     CAT_INDEX_DISP_NAME: "",
   };
 
-  const prdServices = companydata?.companyhash?.DATA?.PRDNAV || [];
-  const primaryBusiness = companydata?.companyhash?.DATA?.COMPANYDETAIL?.BIZ || "Product Provider";
-
-  // Helper function to safely get the image path
+  const prdServices = companydata?.DATA?.PRDNAV || [];
+  const primaryBusiness = companydata?.DATA?.COMPANYDETAIL?.BIZ || "Product Provider";
+  const prodType = primaryBusiness === 'Service Provider' ? 'Service' : 'Product';
+  // Helper function to safely get the product image
   const getProductImage = (category) => {
     const product = category.PRODLIST?.find(
       (prd) => prd.ITEM_IMG_SMALL || prd.ITEM_IMG_125
     );
-    return product ? companydata.changeHttpPath(product.ITEM_IMG_SMALL) : "";
+    return product ? product.ITEM_IMG_SMALL || product.ITEM_IMG_125 : "";
   };
 
   return (
@@ -23,8 +26,10 @@ export default function Catindex({ companydata }) {
       <article className="m63_scsn">
         <h2>
           <a href={headerData.CAT_INDEX_DISP_NAME} className="tdn clr5 dib mb20">
-            {headerData.CAT_INDEX_NAME?.split(" ")[0]}
-            <span className="fw7"> {headerData.CAT_INDEX_NAME?.split(" ")[1]}</span>
+            {headerData.CAT_INDEX_NAME?.split(" ")[0]}{" "}
+            <span className="fw7"> 
+            {headerData.CAT_INDEX_NAME?.substring(headerData.CAT_INDEX_NAME.indexOf(" ") + 1)}
+            </span>
           </a>
         </h2>
 
@@ -53,7 +58,7 @@ export default function Catindex({ companydata }) {
                 {category.CAT_PRD_COUNT && (
                   <p className="clr7 p10 f15 pa bsb w1 m63_mr_prd">
                     <a href={category.CATFLNAME} className="tdn clr7">
-                      {category.CAT_PRD_COUNT} {primaryBusiness}
+                      {category.CAT_PRD_COUNT} {prodType}
                       {category.CAT_PRD_COUNT !== 1 && "s"}
                     </a>
                   </p>
@@ -64,5 +69,6 @@ export default function Catindex({ companydata }) {
         </div>
       </article>
     </main>
+    // <Popup/>
   );
 }
