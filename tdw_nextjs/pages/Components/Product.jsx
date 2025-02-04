@@ -1,4 +1,3 @@
-import React from 'react';
 
 const Product = ({ img, categoryName, categoryLink, productCount, prodType }) => {
   return (
