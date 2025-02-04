@@ -13,30 +13,31 @@ export async function getServerSideProps(context) {
   try {
     const companyData = await GetCompanyResponse(context);
     console.log("Company Data from API:", companyData);
+    var pagename = companyData?.DATA?.PAGELINKTYPE;
 
-    if (!companyData) {
+    if (!companyData || pagename === undefined) {
       // Handle the case where the API returns no data
       console.error("No data returned from the API.");
       return { notFound: true };
     }
-
-    return {
-      props: { companyData }, // Pass companyData as props
-    };
+    else{
+      return {
+        props: { companyData }, // Pass companyData as props
+      };
+    }
+   
   } catch (error) {
     console.error("Error in getServerSideProps:", error);
     return { notFound: true }; // Render 404 page on error
   }
 }
 
-export default function Index({ companyData }) {
+export default function Index({ companyData,context }) {
 //   console.log("Received companyData:", companyData);
 
   const pagename = companyData?.DATA?.PAGELINKTYPE;
-//   console.log("Page Name:", pagename);
-
+  console.log("Page Name:", pagename);
   let pageComponent;
-
   switch (pagename) {
     case "category":
       pageComponent = <Category companydata={companyData} />;
@@ -50,8 +51,6 @@ export default function Index({ companyData }) {
     case "enquiry":
       pageComponent = <Enquiry />;
       break;
-    default:
-      pageComponent = <NotFound context={context} />;
   }
 
   return (

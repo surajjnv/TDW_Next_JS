@@ -27,10 +27,15 @@ export default function Catindex({ companydata }) {
       <article className="m63_scsn">
         <h2>
           <a href={headerData.CAT_INDEX_DISP_NAME} className="tdn clr5 dib mb20">
+<<<<<<< HEAD
             {headerData.CAT_INDEX_NAME?.split(" ")[0]}{" "}
             <span className="fw7"> 
               {headerData.CAT_INDEX_NAME?.substring(headerData.CAT_INDEX_NAME.indexOf(" ") + 1)}
             </span>
+=======
+            {headerData.CAT_INDEX_NAME?.split(/ (.+)/)[0]}
+            <span className="fw7"> {headerData.CAT_INDEX_NAME?.split(/ (.+)/)[1]}</span>
+>>>>>>> 733c355f73bc01cfb56f674708501902ff841ea7
           </a>
         </h2>
 
