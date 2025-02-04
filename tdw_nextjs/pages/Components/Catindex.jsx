@@ -1,5 +1,6 @@
 import './Catindex.css';
 import Product from './Product'; // Assuming you create a Product component
+import Popup from './Popup';
 
 export default function Catindex({ companydata }) {
   if (!companydata) {
@@ -49,6 +50,7 @@ export default function Catindex({ companydata }) {
           })}
         </div>
       </article>
+      <Popup/>
     </main>
   );
 }
