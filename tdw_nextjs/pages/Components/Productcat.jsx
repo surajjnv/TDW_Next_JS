@@ -1,5 +1,5 @@
 
-const Product = ({ img, categoryName, categoryLink, productCount, prodType }) => {
+const Productcat = ({ img, categoryName, categoryLink, productCount, prodType }) => {
   return (
     <section className="m63_prd df fdc bg5 bsb br5 tac ofh pr">
       <figure className="bg4 df">
@@ -11,6 +11,7 @@ const Product = ({ img, categoryName, categoryLink, productCount, prodType }) =>
               className="db imgCenter"
             />
           )}
+          
         </a>
       </figure>
       <h2>

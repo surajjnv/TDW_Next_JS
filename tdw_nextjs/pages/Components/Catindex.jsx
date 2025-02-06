@@ -1,5 +1,5 @@
 import './Catindex.css';
-import Product from './Product'; // Assuming you create a Product component
+import Product from './Productcat'; // Assuming you create a Product component
 import Popup from './Popup';
 
 export default function Catindex({ companydata }) {
@@ -38,7 +38,7 @@ export default function Catindex({ companydata }) {
             const img = getProductImage(category);
 
             return (
-              <Product
+              <Productcat
                 key={index}
                 img={img}
                 categoryName={category.CAT_NAME}
@@ -50,7 +50,7 @@ export default function Catindex({ companydata }) {
           })}
         </div>
       </article>
-      <Popup/>
+      {/* <Popup/> */}
     </main>
   );
 }
