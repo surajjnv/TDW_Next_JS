@@ -1,6 +1,8 @@
 export function ForbiddenRoute_beforeAPI(context) {
     //list of all forbidden Route
     let pathname = context.resolvedUrl;
+    let referrer = context.req.headers.referer;
+    console.log("referrer"+referrer);
     pathname = pathname.replace(/^\//, "");
     console.log("Inside forbidden functn");
     const forbiddenRoutes = [
@@ -32,11 +34,19 @@ export function ForbiddenRoute_beforeAPI(context) {
       /\/EleGame\//,
       /\/views\//,
       /\/\/\?s=index/,
-      /\/\/\?a=fetch/
+      /\/\/\?a=fetch/,
+      /\\s/,/=/,
+      /\.pdf$/,
+      /\s+|%20/,
+      /\.(html|htm|sitemap\.xml|BingSiteAuth\.xml|pdf)$/,
+      /^[\w-]+(\.html|\.htm|\.xml|\.pdf)$/,
     ];
+
+    const forbdn_referrer=[/anti-crisis-seo/,/go\.mail\.ru/,/:80/,]
   
     // Check against forbidden routes
-    const isForbidden = forbiddenRoutes.some((pattern) => pattern.test(pathname));
+    let isForbidden = forbiddenRoutes.some((pattern) => pattern.test(pathname));
+    isForbidden = forbdn_referrer.some((pattern)=>pattern.test(referrer) );
     console.log(isForbidden);
     if (isForbidden) {
         context.res.statusCode = 403;
