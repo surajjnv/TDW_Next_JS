@@ -8,6 +8,7 @@ import Aboutus from "../Components/Aboutus";
 import NotFound from "../Components/Notfound";
 import Catindex from "../Components/Catindex";
 import Enquiry from "../Components/Enquiry";
+import Custom404 from "../404"
 
 export async function getServerSideProps(context) {
   try {
@@ -20,20 +21,20 @@ export async function getServerSideProps(context) {
       console.error("No data returned from the API.");
       return { notFound: true };
     }
-    else{
+    else {
       return {
         props: { companyData }, // Pass companyData as props
       };
     }
-   
+
   } catch (error) {
     console.error("Error in getServerSideProps:", error);
     return { notFound: true }; // Render 404 page on error
   }
 }
 
-export default function Index({ companyData,context }) {
-//   console.log("Received companyData:", companyData);
+export default function Index({ companyData, context }) {
+  //   console.log("Received companyData:", companyData);
 
   const pagename = companyData?.DATA?.PAGELINKTYPE;
   console.log("Page Name:", pagename);
@@ -46,11 +47,13 @@ export default function Index({ companyData,context }) {
       pageComponent = <Aboutus />;
       break;
     case "catindex":
-      pageComponent = <Catindex companydata={companyData}/>;
+      pageComponent = <Catindex companydata={companyData} />;
       break;
     case "enquiry":
       pageComponent = <Enquiry />;
       break;
+    default:
+      pageComponent = <Custom404 />
   }
 
   return (
