@@ -41,7 +41,7 @@ export function ForbiddenRoute_beforeAPI(context) {
   ];
 
   const forbdn_referrer = [/anti-crisis-seo/, /go\.mail\.ru/, /:80/,];
-  const validExtensions = /\.(html|htm|sitemap\.xml|BingSiteAuth\.xml|pdf)$/;
+  const validExtensions = /\.(html|htm|sitemap\.xml|\.xml|pdf)$/;
   const validFileName = /^[\w-]+(\.html|\.htm|\.xml|\.pdf)$/;
 
   console.log("Pathname:" + pathname);
@@ -49,9 +49,13 @@ export function ForbiddenRoute_beforeAPI(context) {
 
   // Check against forbidden routes
   let isForbidden_path = forbiddenRoutes.some((pattern) => pattern.test(pathname));
+  console.log("test:"+isForbidden_path);
   let isForbidden_referrer = forbdn_referrer.some((pattern) => pattern.test(referrer));
+  if(pathname == ''){
+    pathname = 'index.html';
+  }
   if (
-    !validExtensions.test(pathname) ||
+    validExtensions.test(pathname) ||
     (validExtensions.test(pathname) && !validFileName.test(pathname))
   ) {
     isForbidden_path = true;

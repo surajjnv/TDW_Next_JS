@@ -3,6 +3,7 @@ import { ForbiddenRoute_afterAPI } from './getForbiddenRoute';
 import { RedirectRoute_afterAPI } from './getRedirectionRoute';
 import { ForbiddenRoute_beforeAPI } from './getForbiddenRoute';
 import { RedirectRoute_beforeAPI } from './getRedirectionRoute';
+import {Url_validation_and_security} from './Url_validation_and_security';
 
 export default async function GetCompanyResponse(context) {
 
@@ -30,6 +31,7 @@ export default async function GetCompanyResponse(context) {
      pathname = pathname.replace(/^\//, "");
      ForbiddenRoute_beforeAPI(context);
      RedirectRoute_beforeAPI(context);
+     Url_validation_and_security(context);
     if (pathname === "/") pathname = "";
 
     const company_api = `http://company.imutils.com/wservce/company/detail/token/imobile@15061981/glusrid//alias/${domainName}/cat_link/${pathname}/modid/tdw/`;

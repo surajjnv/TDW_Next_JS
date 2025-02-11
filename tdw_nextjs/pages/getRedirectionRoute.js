@@ -29,8 +29,8 @@ export function RedirectRoute_beforeAPI(context) {
         const newUrl = `http://${domainName}/sitemap.html`; // Construct the new URL
 
         // Redirect to sitemap.html with 301 (Permanent Redirect)
-        res.writeHead(302, { Location: newUrl });
-        res.end();
+        context.res.writeHead(302, { Location: newUrl });
+        context.res.end();
         return;
     }
 

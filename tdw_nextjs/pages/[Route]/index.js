@@ -13,7 +13,8 @@ import Custom404 from "../404"
 export async function getServerSideProps(context) {
   try {
     const companyData = await GetCompanyResponse(context);
-    console.log("Company Data from API:", companyData);
+    // console.log("Company Data from API:", companyData);
+    console.log(context);
     var pagename = companyData?.DATA?.PAGELINKTYPE;
 
     if (!companyData || pagename === undefined) {
