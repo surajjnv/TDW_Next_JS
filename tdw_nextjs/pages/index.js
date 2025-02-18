@@ -4,6 +4,8 @@ import Footer from "./Components/Footer"; // Import the Footer component
 import Homepage from "./Components/Index";
 import Header from "./Components/Header";
 import GetCompanyResponse  from "./CompanyResponse";
+import "@/styles/bootstrap_home.css"
+import Set_PrimaryColor from "./Utilities/Select_Color.js"
 
 
 export async function getServerSideProps(context) {
@@ -12,10 +14,16 @@ export async function getServerSideProps(context) {
    let companyData = await GetCompanyResponse(context);
     // ForbiddenRoute_afterAPI(companyData, parsedUrl);
 
-    console.log("Returning company data!!");
+    // console.log("Returning company data!!");
+    // console.log(companyData);
+    const { mainColor, auxColor } = Set_PrimaryColor(companyData);
+    console.log("mainColor"+ mainColor);
+    console.log("Auxcolor"+ auxColor);
     return {
       props: {
         companyData,
+        mainColor,
+        auxColor
       },
     };
   } catch (error) {
@@ -24,14 +32,23 @@ export async function getServerSideProps(context) {
       notFound: true,
     };
   }
+
+ 
 }
 
-export default function Index({ companyData }) {
+export default function Index({ companyData, context, mainColor, auxColor }) {
   return (
-    <>
-      <Header companydata={companyData} />
+    <div style={{ "--main-color": mainColor, "--aux-color": auxColor }}>
+      <Header companydata={companyData} context={context} />
       <Homepage />
       <Footer />
-    </>
+      <style jsx global>{`
+        :root {
+          --main-color: ${mainColor};
+          --aux-color: ${auxColor};
+        }
+      `}</style>
+    </div>
   );
 }
+

@@ -23,7 +23,7 @@ export default async function GetCompanyResponse(context) {
     console.log("Domain Name:", domainName);
 
     if (domainName === "localhost:3000" || domainName === "localhost:3001") {
-        domainName = "revomac-net";
+        domainName = "royalstationers-co-in";
     } else {
         domainName = domainName.replace(/\./g, "-");
     }

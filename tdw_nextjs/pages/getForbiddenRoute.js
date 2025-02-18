@@ -55,10 +55,11 @@ export function ForbiddenRoute_beforeAPI(context) {
     pathname = 'index.html';
   }
   if (
-    validExtensions.test(pathname) ||
+    !validExtensions.test(pathname) ||
     (validExtensions.test(pathname) && !validFileName.test(pathname))
   ) {
     isForbidden_path = true;
+    console.log("===test====");
   }
   console.log(isForbidden_path);
   if (isForbidden_path || isForbidden_referrer) {
