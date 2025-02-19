@@ -1,3 +1,154 @@
+/* Dynamic styling on the basis of styleid  */
+
+.ps-btn--warning {
+    border: 1px solid var(--main-color) !important;
+    background-color: var(--main-color) !important;
+}
+.ps-btn--warning:hover {
+    color: var(--main-color) !important;
+}
+.ps-btn--outline, button.ps-btn--outline {
+    background-color: #fff !important;
+    color: var(--main-color) !important;
+    border: 1px solid #fff !important;
+}
+.ps-btn--outline:hover, button.ps-btn--outline:hover {
+    background-color: var(--main-color) !important;
+    color: #fff !important;
+}
+.ps-search-table .input-group-append>a,
+.ps-search-table .input-group-append>span {
+    background-color: var(--main-color);
+}
+.sbar>li.actv>a {
+    color: var(--main-color);
+}
+.ps-footer--contact .ps-footer__fax i {
+    color: var(--main-color);
+    margin-right: 15px;
+    font-size: 22px;
+    font-weight: 700;
+}
+.jk-banner-item-content .jk-price span:first-child,
+.jk-banner-product-wrapper .jk-banner-product-price span:first-child {
+    color: var(--main-color);
+}
+.menu .conta {
+    background-color: var(--main-color);
+}
+.pdp_thmb li.actv_thmb {
+    border-color: var(--main-color);
+}
+.jk-banner-product-price.home_glp {
+    color: var(--main-color);
+}
+.clr5 {
+    color: var(--main-color);
+}
+.glq_btn_pdp:hover svg,
+.jk-pro-vdo-thumbnail:hover svg circle,
+.product-heading-box>a:hover svg,
+.product-sub-heading-box>a:hover svg,
+.ps-footer--contact svg,
+.ps-header__right button:hover svg path,
+.ps-header__right:hover svg {
+    fill: var(--main-color);
+}
+.ps-footer--block.jk-footer-block .ps-block__list li:hover a,
+a:hover {
+    color: var(--main-color);
+}
+.has-mega-menu:hover>a {
+    background-color: var(--main-color) !important;
+}
+.ps-section--categories .ps-categories__name:hover {
+    color: var(--main-color);
+}
+.mega-menu .sub-menu--mega li a:hover, 
+.mega-menu .sub-menu--mega li>span:hover, 
+.menu>li>a:hover {
+    color: var(--main-color);
+}
+.jk-banner-item-content h2:hover a,
+.jk-banner-product-content h4:hover a,
+.jk-banner-product-list-info li:hover a,
+.product-sub-heading-box h4:hover a,
+.ps-footer--block .ps-block__list li a:hover,
+.sbar li a:hover {
+    color: var(--main-color);
+}
+.ci_vall:hover,
+.product-heading-box>a:hover,
+.product-sub-heading-box>a:hover {
+    color: var(--main-color);
+}
+.jk-banner-product-wrapper .jk-banner-product-list-info ul li:hover:before,
+.jk-list-info ul li:hover:before {
+    background-color: var(--main-color);
+}
+.ps-footer--contact:hover {
+    border: 1px solid var(--main-color);
+    background-color: var(--main-color);
+}
+.rcb_btn_pdp:hover {
+    border-color: var(--main-color) !important;
+    background-color: var(--main-color) !important;
+}
+.sbar>li:hover {
+    background-color: var(--aux-color);
+}
+.actv>a:after {
+    background-color: var(--aux-color);
+}
+.actv>ul li {
+    border-bottom: 1px solid var(--aux-color);
+}
+.sbar>li.actv {
+    background-color: var(--aux-color);
+}
+.search-btn:hover {
+    background-color: #fff !important;
+    border: 1px solid var(--main-color) !important;
+    color: var(--main-color) !important;
+}
+.search-btn:hover svg path:first-child {
+    fill: var(--main-color);
+}
+.clr_main {
+    color: var(--main-color);
+}
+.rcb_btn_pdp1 {
+    border: 1px solid var(--main-color) !important;
+    color: var(--main-color);
+}
+.rcb_btn_pdp1:hover {
+    color: #fff;
+    background-color: var(--main-color) !important;
+}
+.rcb_btn_pdp1 svg {
+    fill: var(--main-color) !important;
+}
+.rcb_btn_pdp1:hover svg {
+    fill: #fff !important;
+}
+.glq_btn_pdp {
+    color: var(--main-color);
+    border: 1px solid var(--main-color);
+}
+.yiamintCTA .glq_btn_pdp:hover svg {
+    fill: var(--main-color);
+}
+.glq_btn_pdp:hover {
+    color: #fff !important;
+    background-color: var(--main-color) !important;
+}
+.yiamintCTA .glq_btn_pdp:hover {
+    color: var(--main-color) !important;
+    background-color: #fff !important
+}
+
+
+
 h1,
 h2,
 h3,
@@ -4032,153 +4183,7 @@ h3.an-jk-contact-title {
   .sprt{background-image:url("https://tdw.imimg.com/template-tdw/d0073/images/sprite2.png")}
   .intl-tel-input .flag_ctry{background-image:url(https://tdw.imimg.com/template-tdw/cntry_flags.png)} 
 
+  a {
+    text-decoration: none !important;
+  }
 
-
-/* Dynamic styling on the basis of styleid  */
-
-  .ps-btn--warning {
-    border: 1px solid var(--main-color) !important;
-    background-color: var(--main-color) !important;
-}
-.ps-btn--warning:hover {
-    color: var(--main-color) !important;
-}
-.ps-btn--outline, button.ps-btn--outline {
-    background-color: #fff !important;
-    color: var(--main-color) !important;
-    border: 1px solid #fff !important;
-}
-.ps-btn--outline:hover, button.ps-btn--outline:hover {
-    background-color: var(--main-color) !important;
-    color: #fff !important;
-}
-.ps-search-table .input-group-append>a,
-.ps-search-table .input-group-append>span {
-    background-color: var(--main-color);
-}
-.sbar>li.actv>a {
-    color: var(--main-color);
-}
-.ps-footer--contact .ps-footer__fax i {
-    color: var(--main-color);
-    margin-right: 15px;
-    font-size: 22px;
-    font-weight: 700;
-}
-.jk-banner-item-content .jk-price span:first-child,
-.jk-banner-product-wrapper .jk-banner-product-price span:first-child {
-    color: var(--main-color);
-}
-.menu .conta {
-    background-color: var(--main-color);
-}
-.pdp_thmb li.actv_thmb {
-    border-color: var(--main-color);
-}
-.jk-banner-product-price.home_glp {
-    color: var(--main-color);
-}
-.clr5 {
-    color: var(--main-color);
-}
-.glq_btn_pdp:hover svg,
-.jk-pro-vdo-thumbnail:hover svg circle,
-.product-heading-box>a:hover svg,
-.product-sub-heading-box>a:hover svg,
-.ps-footer--contact svg,
-.ps-header__right button:hover svg path,
-.ps-header__right:hover svg {
-    fill: var(--main-color);
-}
-.ps-footer--block.jk-footer-block .ps-block__list li:hover a,
-a:hover {
-    color: var(--main-color);
-}
-.has-mega-menu:hover>a {
-    background-color: var(--main-color) !important;
-}
-.ps-section--categories .ps-categories__name:hover {
-    color: var(--main-color);
-}
-.mega-menu .sub-menu--mega li a:hover, 
-.mega-menu .sub-menu--mega li>span:hover, 
-.menu>li>a:hover {
-    color: var(--main-color);
-}
-.jk-banner-item-content h2:hover a,
-.jk-banner-product-content h4:hover a,
-.jk-banner-product-list-info li:hover a,
-.product-sub-heading-box h4:hover a,
-.ps-footer--block .ps-block__list li a:hover,
-.sbar li a:hover {
-    color: var(--main-color);
-}
-.ci_vall:hover,
-.product-heading-box>a:hover,
-.product-sub-heading-box>a:hover {
-    color: var(--main-color);
-}
-.jk-banner-product-wrapper .jk-banner-product-list-info ul li:hover:before,
-.jk-list-info ul li:hover:before {
-    background-color: var(--main-color);
-}
-.ps-footer--contact:hover {
-    border: 1px solid var(--main-color);
-    background-color: var(--main-color);
-}
-.rcb_btn_pdp:hover {
-    border-color: var(--main-color) !important;
-    background-color: var(--main-color) !important;
-}
-.sbar>li:hover {
-    background-color: var(--aux-color);
-}
-.actv>a:after {
-    background-color: var(--aux-color);
-}
-.actv>ul li {
-    border-bottom: 1px solid var(--aux-color);
-}
-.sbar>li.actv {
-    background-color: var(--aux-color);
-}
-.search-btn:hover {
-    background-color: #fff !important;
-    border: 1px solid var(--main-color) !important;
-    color: var(--main-color) !important;
-}
-.search-btn:hover svg path:first-child {
-    fill: var(--main-color);
-}
-.clr_main {
-    color: var(--main-color);
-}
-.rcb_btn_pdp1 {
-    border: 1px solid var(--main-color) !important;
-    color: var(--main-color);
-}
-.rcb_btn_pdp1:hover {
-    color: #fff;
-    background-color: var(--main-color) !important;
-}
-.rcb_btn_pdp1 svg {
-    fill: var(--main-color) !important;
-}
-.rcb_btn_pdp1:hover svg {
-    fill: #fff !important;
-}
-.glq_btn_pdp {
-    color: var(--main-color);
-    border: 1px solid var(--main-color);
-}
-.yiamintCTA .glq_btn_pdp:hover svg {
-    fill: var(--main-color);
-}
-.glq_btn_pdp:hover {
-    color: #fff !important;
-    background-color: var(--main-color) !important;
-}
-.yiamintCTA .glq_btn_pdp:hover {
-    color: var(--main-color) !important;
-    background-color: #fff !important
-}

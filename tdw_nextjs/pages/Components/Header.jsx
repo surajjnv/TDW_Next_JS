@@ -1,6 +1,7 @@
+import { changeHttpPath } from "../Utlility_function/common_function";
+import TopNavigation from "./Topnavigation";
 
-
-const Header = ({ companydata ,context,mainColor,cDetails}) => {
+const Header = ({ companydata, context, mainColor, cDetails }) => {
   const compName =
     companydata?.DATA?.COMPANYDETAIL?.DIR_SEARCH_COMPANY || "Company Name";
   const gstNumber =
@@ -14,27 +15,35 @@ const Header = ({ companydata ,context,mainColor,cDetails}) => {
   ]
     .filter(Boolean)
     .join(", ");
-    const locality = companydata?.DATA?.COMPANYDETAIL?.GLUSR_USR_LOCALITY || "";
-    const cny_logo = cDetails?.CompanyLogo;
-    console.log("company_logo"+ cny_logo);
-    // const { req } = context;
 
-    // Check if cookies exist
-    // const cookies = req.headers.cookie || '';
-  
-    // Check for specific cookies
-    // const hasIpLoc = cookies.includes('iploc=');
+  const locality = companydata?.DATA?.COMPANYDETAIL?.GLUSR_USR_LOCALITY || "";
+  const CompanyName = companydata.DATA.COMPANYDETAIL.DIR_SEARCH_COMPANY || '';
+  const CompanyLogo = changeHttpPath(companydata.DATA.COMPANYDETAIL.COMPANY_LOGO) || '';
+  const CompanyLogo120 = changeHttpPath(companydata.DATA.COMPANYDETAIL.COMPANY_LOGO_120 )|| '';
+  const State = companydata.DATA.COMPANYDETAIL.DIR_SEARCH_STATE || '';
+  const City = companydata.DATA.COMPANYDETAIL.DIR_SEARCH_CITY || '';
+  const TSCODE = companydata.DATA.COMPANYDETAIL.TSCODE || '';
+  const CompanyIso = companydata.URL_DETAIL.ISO_CERT_NAME || '';
+  // const cny_logo = cDetails?.CompanyLogo;
+  // console.log("company_logo" + cny_logo);
+  // const { req } = context;
 
-    // if(!hasIpLoc){
+  // Check if cookies exist
+  // const cookies = req.headers.cookie || '';
 
-    // }
+  // Check for specific cookies
+  // const hasIpLoc = cookies.includes('iploc=');
+
+  // if(!hasIpLoc){
+
+  // }
 
 
   return (
     <>
       <div className="position-fixed d-none cp align-items-center justify-content-center" id="bckTop" onclick="window.scrollTo({ 'behavior': 'smooth', 'left': 0, 'top': 0 });"><svg enable-background="new 0 0 170.08 170.08" viewBox="0 0 170.08 170.08" width="30" height="30"><g><path d="m39.65 101.37c-2.34 2.34-2.34 6.14 0 8.48s6.14 2.34 8.48 0l36.9-36.9 36.9 36.9c2.34 2.34 6.14 2.34 8.48 0s2.34-6.14 0-8.48l-41.13-41.14c-2.34-2.34-6.14-2.34-8.48 0z" fill="#1a1a1a"></path></g></svg>
       </div>
-      <div  className="ps-page ps-layout">
+      <div className="ps-page ps-layout">
         <header className="ps-header ps-header--5">
           <div className="ps-header__middle bg-white">
             <div className="container">
@@ -44,7 +53,7 @@ const Header = ({ companydata ,context,mainColor,cDetails}) => {
                     <div className="dflt_logo d-flex justify-content-center align-items-center">
                       <div className="cmpny_logo d-flex justify-content-center align-items-center">
                         <img
-                          src={cny_logo}
+                          src={CompanyLogo}
                           alt={compName}
                         />
                       </div>
@@ -56,22 +65,22 @@ const Header = ({ companydata ,context,mainColor,cDetails}) => {
                         </h1>
                         <div className="d-flex align-items-center loc_gst mt5">
                           <p className="d-flex align-items-center fs14">
-                          <svg 
-    width="13" 
-    height="17" 
-    viewBox="0 0 13 17" 
-    fill="none" 
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path 
-      d="M12.7892 6.32762C12.6144 3.20445 9.93954 0.646596 6.6974 0.504212C6.59601 0.5 6.49548 0.5 6.39758 0.5C5.15248 0.500357 3.93452 0.850787 2.89297 1.50835C1.85142 2.16591 1.03151 3.10203 0.533711 4.20201C0.0359159 5.302 -0.118141 6.51805 0.0904198 7.70116C0.29898 8.88427 0.861098 9.98304 1.70789 10.8628C2.34676 11.5282 2.94147 12.2316 3.48849 12.9691L5.9509 16.2785C6.00169 16.347 6.06872 16.4028 6.14641 16.4414C6.2241 16.4799 6.31021 16.5 6.39758 16.5C6.48495 16.5 6.57106 16.4799 6.64875 16.4414C6.72644 16.4028 6.79347 16.347 6.84426 16.2785L9.3058 12.9691C9.83521 12.2458 10.4155 11.5584 11.0427 10.9117C11.6446 10.304 12.1103 9.58342 12.4107 8.79478C12.7112 8.00613 12.84 7.16632 12.7892 6.32762ZM6.39758 8.41956C5.98556 8.41973 5.58273 8.30212 5.24006 8.08161C4.8974 7.86111 4.63027 7.54761 4.47248 7.18076C4.31468 6.81392 4.2733 6.41021 4.35358 6.0207C4.43386 5.63119 4.63218 5.27338 4.92346 4.99251C5.21475 4.71165 5.58591 4.52035 5.99 4.44282C6.3941 4.36528 6.81297 4.40499 7.19365 4.55692C7.57433 4.70885 7.8997 4.96619 8.12863 5.29637C8.35756 5.62655 8.47975 6.01475 8.47975 6.41187C8.47929 6.94406 8.25979 7.45434 7.86944 7.83073C7.47908 8.20713 6.94974 8.41889 6.39758 8.41956Z" fill = {mainColor}
-    />
-  </svg>
+                            <svg
+                              width="13"
+                              height="17"
+                              viewBox="0 0 13 17"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M12.7892 6.32762C12.6144 3.20445 9.93954 0.646596 6.6974 0.504212C6.59601 0.5 6.49548 0.5 6.39758 0.5C5.15248 0.500357 3.93452 0.850787 2.89297 1.50835C1.85142 2.16591 1.03151 3.10203 0.533711 4.20201C0.0359159 5.302 -0.118141 6.51805 0.0904198 7.70116C0.29898 8.88427 0.861098 9.98304 1.70789 10.8628C2.34676 11.5282 2.94147 12.2316 3.48849 12.9691L5.9509 16.2785C6.00169 16.347 6.06872 16.4028 6.14641 16.4414C6.2241 16.4799 6.31021 16.5 6.39758 16.5C6.48495 16.5 6.57106 16.4799 6.64875 16.4414C6.72644 16.4028 6.79347 16.347 6.84426 16.2785L9.3058 12.9691C9.83521 12.2458 10.4155 11.5584 11.0427 10.9117C11.6446 10.304 12.1103 9.58342 12.4107 8.79478C12.7112 8.00613 12.84 7.16632 12.7892 6.32762ZM6.39758 8.41956C5.98556 8.41973 5.58273 8.30212 5.24006 8.08161C4.8974 7.86111 4.63027 7.54761 4.47248 7.18076C4.31468 6.81392 4.2733 6.41021 4.35358 6.0207C4.43386 5.63119 4.63218 5.27338 4.92346 4.99251C5.21475 4.71165 5.58591 4.52035 5.99 4.44282C6.3941 4.36528 6.81297 4.40499 7.19365 4.55692C7.57433 4.70885 7.8997 4.96619 8.12863 5.29637C8.35756 5.62655 8.47975 6.01475 8.47975 6.41187C8.47929 6.94406 8.25979 7.45434 7.86944 7.83073C7.47908 8.20713 6.94974 8.41889 6.39758 8.41956Z" fill={mainColor}
+                              />
+                            </svg>
                             <span>{locality} {location || "Location Not Available"}</span>
                           </p>
                           <p className="d-flex align-items-center fs14">
-                          <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
-                          <path d="M8.71665 0.5C4.34439 0.5 0.799988 4.08172 0.799988 8.5C0.799988 12.9183 4.34439 16.5 8.71665 16.5C13.0889 16.5 16.6333 12.9183 16.6333 8.5C16.6333 4.08172 13.0889 0.5 8.71665 0.5ZM13.1188 5.88032C9.84309 9.08344 8.20486 12.4772 8.18863 12.5116C8.18099 12.5275 8.16238 12.5623 8.15397 12.5775C8.08661 12.7009 8.00125 12.7855 7.87629 12.8678C7.87378 12.8695 7.87059 12.8687 7.86798 12.8704C7.73452 12.9562 7.61024 13.0081 7.45137 13.0131C7.44306 13.0133 7.40605 13.0131 7.39745 13.0131C7.39745 13.0131 7.39716 13.0129 7.39687 13.0129L7.39619 13.0131C7.26863 13.0131 7.13874 12.985 7.01582 12.9256C7.00944 12.9225 7.00586 12.9165 6.99968 12.9133C6.97591 12.9012 6.92543 12.8758 6.90272 12.8614C6.80879 12.8014 6.78266 12.7805 6.71965 12.6939C6.70893 12.6794 6.67101 12.627 6.66096 12.6116C6.65246 12.5975 5.79739 11.2944 4.45218 10.4256C4.0432 10.1616 3.92337 9.61313 4.18468 9.19907C4.44599 8.785 4.98795 8.66782 5.39847 8.92875C6.17303 9.42866 6.79906 10.0282 7.26109 10.5391C8.05527 9.18198 9.57694 6.87338 11.8972 4.60532C12.2451 4.26157 12.8018 4.2725 13.1389 4.62563C13.4775 4.97719 13.4682 5.53969 13.1188 5.88032Z" fill={mainColor}></path></svg>
+                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
+                              <path d="M8.71665 0.5C4.34439 0.5 0.799988 4.08172 0.799988 8.5C0.799988 12.9183 4.34439 16.5 8.71665 16.5C13.0889 16.5 16.6333 12.9183 16.6333 8.5C16.6333 4.08172 13.0889 0.5 8.71665 0.5ZM13.1188 5.88032C9.84309 9.08344 8.20486 12.4772 8.18863 12.5116C8.18099 12.5275 8.16238 12.5623 8.15397 12.5775C8.08661 12.7009 8.00125 12.7855 7.87629 12.8678C7.87378 12.8695 7.87059 12.8687 7.86798 12.8704C7.73452 12.9562 7.61024 13.0081 7.45137 13.0131C7.44306 13.0133 7.40605 13.0131 7.39745 13.0131C7.39745 13.0131 7.39716 13.0129 7.39687 13.0129L7.39619 13.0131C7.26863 13.0131 7.13874 12.985 7.01582 12.9256C7.00944 12.9225 7.00586 12.9165 6.99968 12.9133C6.97591 12.9012 6.92543 12.8758 6.90272 12.8614C6.80879 12.8014 6.78266 12.7805 6.71965 12.6939C6.70893 12.6794 6.67101 12.627 6.66096 12.6116C6.65246 12.5975 5.79739 11.2944 4.45218 10.4256C4.0432 10.1616 3.92337 9.61313 4.18468 9.19907C4.44599 8.785 4.98795 8.66782 5.39847 8.92875C6.17303 9.42866 6.79906 10.0282 7.26109 10.5391C8.05527 9.18198 9.57694 6.87338 11.8972 4.60532C12.2451 4.26157 12.8018 4.2725 13.1389 4.62563C13.4775 4.97719 13.4682 5.53969 13.1188 5.88032Z" fill={mainColor}></path></svg>
                             <span>
                               GST No.- <span className="fw-bold">{gstNumber}</span>
                             </span>
@@ -101,6 +110,7 @@ const Header = ({ companydata ,context,mainColor,cDetails}) => {
               </div>
             </div>
           </div>
+          <TopNavigation companydata={ companydata}></TopNavigation>
         </header>
       </div>
     </>
