@@ -39,7 +39,7 @@ export default function Index({ companyData, context, mainColor, auxColor }) {
     <div style={{ "--main-color": mainColor, "--aux-color": auxColor }}>
       <Header companydata={companyData} context={context} mainColor = {mainColor}  />
       <Homepage />
-      <Footer />
+      <Footer companydata={companyData} />
       <style jsx global>{`
         :root {
           --main-color: ${mainColor};
