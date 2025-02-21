@@ -79,8 +79,8 @@ export default function TopNavigation({ companydata }) {
                         if (catcnt > 4) {
                           if (
                             !(
-                              DATA.PRDSERV[0]?.CAT_NAME &&
-                              prdcat.CAT_NAME === DATA.PRDSERV[0].CAT_NAME
+                              companydata.DATA.PRDSERV[0]?.CAT_NAME &&
+                              prdcat.CAT_NAME === companydata.DATA.PRDSERV[0].CAT_NAME
                             )
                           ) {
                             return null; // Equivalent to `continue`
@@ -97,12 +97,12 @@ export default function TopNavigation({ companydata }) {
 
                     if (
                       pagetype === "category" &&
-                      prdcat.CATFLNAME !== DATA.PRDSERV[0]?.CATFLNAME &&
-                      !catnmary.includes(DATA.PRDSERV[0]?.CATFLNAME) &&
+                      prdcat.CATFLNAME !== companydata.DATA.PRDSERV[0]?.CATFLNAME &&
+                      !catnmary.includes(companydata.DATA.PRDSERV[0]?.CATFLNAME) &&
                       catcnt === 7
                     ) {
-                      prdCatName = DATA.PRDSERV[0]?.CAT_NAME;
-                      prdcatlist = DATA.PRDSERV[0]?.PRODLIST;
+                      prdCatName = companydata.DATA.PRDSERV[0]?.CAT_NAME;
+                      prdcatlist = companydata.DATA.PRDSERV[0]?.PRODLIST;
                     }
 
                     catnmary.push(prdcat.CATFLNAME);

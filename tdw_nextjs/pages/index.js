@@ -4,6 +4,7 @@ import Footer from "./Components/Footer"; // Import the Footer component
 import Homepage from "./Components/Index";
 import Header from "./Components/Header";
 import GetCompanyResponse  from "./CompanyResponse";
+import "@/styles/globals.css";
 import "@/styles/bootstrap_home.css"
 import Set_PrimaryColor from "./Utilities/Select_Color.js"
 
@@ -34,10 +35,10 @@ export async function getServerSideProps(context) {
  
 }
 
-export default function Index({ companyData, context, mainColor, auxColor }) {
+export default function Index({ companyData, mainColor, auxColor }) {
   return (
     <div style={{ "--main-color": mainColor, "--aux-color": auxColor }}>
-      <Header companydata={companyData} context={context} mainColor = {mainColor}  />
+      <Header companydata={companyData}  mainColor = {mainColor}  />
       <Homepage />
       <Footer companydata={companyData} />
       <style jsx global>{`

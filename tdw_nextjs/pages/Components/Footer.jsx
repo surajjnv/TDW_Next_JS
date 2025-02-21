@@ -22,7 +22,7 @@ export default function Footer({ companydata }) {
 
     // Product  Listing Logic on Footer 
 
-    var catCount = topNav?.cat_complex?.subcat_link != '' ? topNav['cat_complex']['subcat_link'].length : 0;
+    var catCount = Array.isArray(topNav?.cat_complex?.subcat_link) ? topNav.cat_complex.subcat_link.length : 0;
     var checkPrdCount = 0;
     if (catCount == 1) {
         catCount = companydata?.DATA?.PRDNAV[0]?.PRODLIST.length;

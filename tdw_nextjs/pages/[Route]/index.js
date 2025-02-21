@@ -9,13 +9,17 @@ import NotFound from "../Components/Notfound";
 import Catindex from "../Components/Catindex";
 import Enquiry from "../Components/Enquiry";
 import Custom404 from "../404"
+import Set_PrimaryColor from "../Utilities/Select_Color";
+// import "@styles/dt_style.css";
 
+  
 export async function getServerSideProps(context) {
   try {
     const companyData = await GetCompanyResponse(context);
     // console.log("Company Data from API:", companyData);
     console.log(context);
     var pagename = companyData?.DATA?.PAGELINKTYPE;
+    const { mainColor, auxColor } = Set_PrimaryColor(companyData);
 
     if (!companyData || pagename === undefined) {
       // Handle the case where the API returns no data
@@ -24,7 +28,9 @@ export async function getServerSideProps(context) {
     }
     else {
       return {
-        props: { companyData }, // Pass companyData as props
+        props: {  companyData,
+          mainColor,
+          auxColor }, // Pass companyData as props
       };
     }
 
@@ -34,7 +40,7 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default function Index({ companyData, context }) {
+export default function Index({  companyData, mainColor, auxColor }) {
   //   console.log("Received companyData:", companyData);
 
   const pagename = companyData?.DATA?.PAGELINKTYPE;
@@ -58,10 +64,17 @@ export default function Index({ companyData, context }) {
   }
 
   return (
-    <>
+    <div style={{ "--main-color": mainColor, "--aux-color": auxColor }}>
       <Header companydata={companyData} />
       {pageComponent} {/* Render the correct component */}
-      <Footer />
-    </>
+      <Footer companydata={companyData} />
+      <style jsx global>{`
+        :root {
+          --main-color: ${mainColor};
+          --aux-color: ${auxColor};
+        }
+      `}</style>
+    </div>
+    
   );
 }
