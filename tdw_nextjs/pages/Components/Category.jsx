@@ -4,6 +4,21 @@ import ProductNavigation from "./Product_navigation";
 // import "@styles/category.css";
 
 export default function Category({ companydata }) {
+    let cat_name = companydata?.DATA?.PRDSERV[0].CAT_NAME == 'New Items' ? companydata?.DATA?.PRDSERV[0].CAT_NAME : companydata?.DATA?.PRDSERV[0].CATDETAIL.CAT_NAME;
+    let cat_desc = '';
+    cat_desc = companydata?.DATA?.PRDSERV[0].CATDETAIL.CAT_DESC;
+    console.log("cat_desc");
+    console.log(cat_desc);
+    if (/<table/i.test(cat_desc)) {
+        cat_desc = cat_desc
+            .replace(/<table/gi, '<div class="text txt7"><div class="tbl1"><table')
+            .replace(/<\/table>/gi, '</table></div></div>');
+
+    }
+    if(cat_desc == ''){
+        //Show Default Category Description 
+        cat_desc = 'of a wide range of products which include camlin permanent marker pen, luxor pro-e refillable white board marker - red - box of 10, luxor pro-e refillable white board marker - green - box of 10, luxor pro-e refillable white board marker, luxor permanent marker - black - box of 10 and camlin white board marker pack of 10 -green.';
+    }
     return (
         <>
             <div className="ps-home ps-home--5 pdp">
@@ -21,7 +36,7 @@ export default function Category({ companydata }) {
                                         <a href="brown-cello-tapes.html">Our Product Range</a>
                                     </li>
                                     <li className="breadcrumb-item active" aria-current="page">
-                                        Marker Pen
+                                        {cat_name}
                                     </li>
                                 </ol>
                             </nav>
@@ -32,14 +47,18 @@ export default function Category({ companydata }) {
                     <div className="container">
                         <div className="row">
                             <div className="col-md-12 tp_hdng">
-                                <h2><span className="fw-bold clr4 ">Marker Pen</span></h2>
+                                <h2><span className="fw-bold clr4 ">{cat_name}</span></h2>
                             </div>
                             <div className="col-md-12">
-                                <p className="clr3 lh24 hgt100 overflow-hidden position-relative he06" id="v_more" > of a wide range of products which include luxor pro-e refillable white board marker - red - box of 10, luxor pro-e refillable white board marker - green - box of 10, luxor pro-e refillable white board marker, luxor permanent marker - black - box of 10, camlin permanent marker ink 500ml-red and camlin permanent marker ink 500ml-green.</p>
+                                <p
+                                    className="clr3 lh24 hgt100 overflow-hidden position-relative he06"
+                                    id="v_more"
+                                    dangerouslySetInnerHTML={{ __html: cat_desc }}
+                                ></p>
                             </div>
                         </div>
                         <div className="row mt15">
-                            <ProductNavigation></ProductNavigation>
+                            <ProductNavigation companydata={companydata}></ProductNavigation>
                             <div className="pdp col-md-9" id="paginate">
                                 <ProductList companydata={companydata}></ProductList>
                             </div>
@@ -48,8 +67,8 @@ export default function Category({ companydata }) {
 
                 </div>
             </div >
-    </>
-)
+        </>
+    )
 };
 
 

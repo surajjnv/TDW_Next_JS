@@ -13,7 +13,15 @@ function ProductList({ companydata }) {
           let prdname = prd.ITEM_NAME;
           let prdImg = prd.ITEM_BIMG_500X500 != '' ? changeHttpPath(prd.ITEM_BIMG_500X500) : '';
           let prdPrice = prd.PC_ITEM_FOB_PRICE_FORMATTED;
-          console.log(prdPrice);
+          let prdDesc = prd?.ITEM_SDESC;
+          if (/<table/i.test(prdDesc)) {
+            prdDesc = prdDesc
+                .replace(/<table/gi, '<div class="text txt7"><div class="tbl1"><table')
+                .replace(/<\/table>/gi, '</table></div></div>');
+            
+        }
+           
+          // console.log(prdPrice);
           let isqShown = 0;
           let isqRows = '';
           if (prd?.ISQ || prd.ISQ.length !== 0) {
@@ -107,9 +115,7 @@ function ProductList({ companydata }) {
                               {isqRows}
                             </tbody>
                           </table>
-                          <div className="mt10 fs14 lh1-7 pr tbl_dn cat_desc2">
-                            We are engaged in offering quality product to our clients. Our range of all products is widely appreciated by our clients.
-                          </div>
+                          <div className="mt10 fs14 lh1-7 pr tbl_dn cat_desc2" dangerouslySetInnerHTML={{ __html: prdDesc }}></div>
                           {/* <span className="pdp_rm clr5 cp position-absolute">read more...</span> */}
                         </div>
                       </div>

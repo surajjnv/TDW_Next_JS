@@ -5,7 +5,7 @@ export default function Footer({ companydata }) {
     var pagename = companydata?.DATA?.PAGELINKTYPE || '';
     var profile_dname = companydata?.DATA?.HEADER?.PROFILEDISPNAME;
     var profle_link = companydata?.DATA?.HEADER?.PROFILE;
-    var paid_showroom_url = companydata?.DATA?.URL_DETAIL?.PAID_SHOWROOM_URL;
+    var paid_showroom_url = companydata?.URL_DETAIL?.PAID_SHOWROOM_URL;
     var franchisee = companydata?.DATA?.HEADER?.FRANCHISE_LINK != '' ? companydata?.DATA?.HEADER?.FRANCHISE_LINK : 'Franchisee';
     var franchisee_dname = franchisee + ' Enquiry Form';
     var franchisee_link = 'franchisee.html';
@@ -90,12 +90,13 @@ export default function Footer({ companydata }) {
                             <div className="col-md-3 p-0">
                                 <div className="ps-footer--block jk-footer-block">
                                     <h2 className="ps-block__title">Company</h2>
-                                    {
-                                        pagename != "homepage" && (<li>
-                                            <span class="ln2 bg1 ds1"></span><a href={paid_showroom_url}>Home</a></li>)
-                                    }
+
 
                                     <ul className="ps-block__list">
+                                        {
+                                            pagename != "homepage" && (<li>
+                                                <span class="ln2 bg1 ds1"></span><a href={paid_showroom_url}>Home</a></li>)
+                                        }
                                         {
                                             profile_dname !== '' && (
                                                 <li>
