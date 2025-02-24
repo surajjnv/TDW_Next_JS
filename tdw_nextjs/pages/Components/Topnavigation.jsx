@@ -18,9 +18,9 @@ export default function TopNavigation({ companydata }) {
     })
     .join(''); // Convert array to string
 
-  console.log("Printing Navlink:", navLink);
-  console.log(navLink.profile?.sub_profile);
-  console.log(navLink.cat_complex?.subcat_link);
+  // console.log("Printing Navlink:", navLink);
+  // console.log(navLink.profile?.sub_profile);
+  // console.log(navLink.cat_complex?.subcat_link);
 
   if (navLink.profile) {
     profile_html = `
@@ -41,7 +41,7 @@ export default function TopNavigation({ companydata }) {
       </div>`;
   }
 
-  console.log(profile_html);
+  // console.log(profile_html);
 
   //Category listing logic 
 
