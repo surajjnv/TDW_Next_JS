@@ -1,6 +1,6 @@
 import { changeHttpPath } from "../Utlility_function/common_function";
 import { parseYtUrl } from "../Utlility_function/common_function";
-import ThumbNail from "./Thumbnail";
+import ImgSection from "./Thumbnail";
 
 
 function ProductList({ companydata }) {
@@ -92,7 +92,7 @@ function ProductList({ companydata }) {
                   </span>
                 </h3>
                 <div className="row">
-                <ThumbNail multipleImages={multipleImages} productvideocode={product_videocode} prdImg ={prdImg}></ThumbNail>
+                <ImgSection multipleImages={multipleImages} productvideocode={product_videocode} prdImg ={prdImg}></ImgSection>
                   <div className="col-md-6 position-relative pdp_data_sec">
                     <span className="col-md-5 position-absolute rcbckCTA">
                       <a className="ps-btn rcb_btn_pdp1 d-flex align-items-center justify-content-center">

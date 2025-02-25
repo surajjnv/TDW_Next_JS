@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function ThumbNail({ multipleImages, productVideoCode,prdImg, alt, sampleResize, pageNameForm, countType, googleTrackEvent }) {
+export default function ImgSection({ multipleImages, productVideoCode,prdImg, alt, sampleResize, pageNameForm, countType, googleTrackEvent }) {
     if (!multipleImages || multipleImages.length <= 1) return null;
 
     let count = 0;

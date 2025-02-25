@@ -1,6 +1,7 @@
 import "@/styles/category.css";
 import ProductList from './Productlist';
 import ProductNavigation from "./Product_navigation";
+import BreadCrumb from "./BreadCrumb";
 // import "@styles/category.css";
 
 export default function Category({ companydata }) {
@@ -15,34 +16,14 @@ export default function Category({ companydata }) {
             .replace(/<\/table>/gi, '</table></div></div>');
 
     }
-    if(cat_desc == ''){
+    if (cat_desc == '') {
         //Show Default Category Description 
         cat_desc = 'of a wide range of products which include camlin permanent marker pen, luxor pro-e refillable white board marker - red - box of 10, luxor pro-e refillable white board marker - green - box of 10, luxor pro-e refillable white board marker, luxor permanent marker - black - box of 10 and camlin white board marker pack of 10 -green.';
     }
     return (
         <>
             <div className="ps-home ps-home--5 pdp">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-12">
-                            <nav
-                                className="mt15"
-                            >
-                                <ol className="breadcrumb">
-                                    <li className="breadcrumb-item">
-                                        <a href="https://www.royalstationers.co.in/">Home</a>
-                                    </li>
-                                    <li className="breadcrumb-item">
-                                        <a href="brown-cello-tapes.html">Our Product Range</a>
-                                    </li>
-                                    <li className="breadcrumb-item active" aria-current="page">
-                                        {cat_name}
-                                    </li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
+                <BreadCrumb Catname={cat_name}></BreadCrumb>
                 <div className="ps-home__content pdp">
                     <div className="container">
                         <div className="row">
