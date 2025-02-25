@@ -1,5 +1,5 @@
-import ProductList from './Productlist';
 import "@/styles/category.css";
+import ProductList from './Productlist';
 import ProductNavigation from "./Product_navigation";
 // import "@styles/category.css";
 

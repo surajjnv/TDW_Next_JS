@@ -1,4 +1,6 @@
 import { changeHttpPath } from "../Utlility_function/common_function";
+import { parseYtUrl } from "../Utlility_function/common_function";
+import ThumbNail from "./Thumbnail";
 
 
 function ProductList({ companydata }) {
@@ -16,11 +18,52 @@ function ProductList({ companydata }) {
           let prdDesc = prd?.ITEM_SDESC;
           if (/<table/i.test(prdDesc)) {
             prdDesc = prdDesc
-                .replace(/<table/gi, '<div class="text txt7"><div class="tbl1"><table')
-                .replace(/<\/table>/gi, '</table></div></div>');
-            
-        }
-           
+              .replace(/<table/gi, '<div class="text txt7"><div class="tbl1"><table')
+              .replace(/<\/table>/gi, '</table></div></div>');
+
+          }
+          let product_videocode = prd.PRD_BULK_VID != '' ? parseYtUrl(prd.PRD_BULK_VID[0].PC_ITEM_VIDEO_PATH) : '';
+
+          //Thumbmail Images 
+
+          let multipleImages = [];
+
+          // Push main product images
+          multipleImages.push({
+            s_img: prd?.ITEM_SIMG,
+            s_img_125: prd?.ITEM_SIMG_125X125,
+            b_img: prd?.ITEM_BIMG_500X500,
+            b_img_1000: prd?.ITEM_IMG_1000X1000
+          });
+
+          // Push video thumbnail images if available
+          if (product_videocode) {
+            multipleImages.push({
+              s_img: `https://img.youtube.com/vi/${product_videocode}/hqdefault.jpg`,
+              s_img_125: `https://img.youtube.com/vi/${product_videocode}/default.jpg`,
+              b_img: `https://img.youtube.com/vi/${product_videocode}/sddefault.jpg`
+            });
+          }
+
+          // Push bulk product images if available
+          if (prd?.PRD_BULK_IMG && prd.PRD_BULK_IMG.length > 0) {
+            prd.PRD_BULK_IMG.forEach((images_oth) => {
+              let s_img_125 = images_oth?.PC_ITEM_IMAGE_125X125 ? changeHttpPath(images_oth.PC_ITEM_IMAGE_125X125) : '';
+              let s_img_250 = images_oth?.PC_ITEM_IMAGE_250X250 ? changeHttpPath(images_oth.PC_ITEM_IMAGE_250X250) : '';
+              let b_img_500 = images_oth?.PC_ITEM_IMAGE_500X500 ? changeHttpPath(images_oth.PC_ITEM_IMAGE_500X500) : '';
+              let b_img_1000 = images_oth?.PC_ITEM_IMAGE_1000X1000 ? changeHttpPath(images_oth.PC_ITEM_IMAGE_1000X1000) : '';
+
+              if (s_img_125) {
+                multipleImages.push({
+                  s_img: s_img_250,
+                  s_img_125: s_img_125,
+                  b_img: b_img_500,
+                  b_img_1000: b_img_1000
+                });
+              }
+            });
+          }
+
           // console.log(prdPrice);
           let isqShown = 0;
           let isqRows = '';
@@ -41,7 +84,7 @@ function ProductList({ companydata }) {
           }
           return (
             <>
-              <a id="prd.ITEMNAME"></a>
+              <a id={`${prd.ITEM_NAME}`}></a>
               <section className="pdp_img_txt mb30">
                 <h3>
                   <span className="fw-bold clr4">
@@ -49,45 +92,7 @@ function ProductList({ companydata }) {
                   </span>
                 </h3>
                 <div className="row">
-                  <div className="col-md-6">
-                    <div className="position-sticky">
-                      <div id="pvdo1"></div>
-                      <div className="pdp-img_thmb">
-                        <div className="pdp_img cp d-flex align-items-center justify-content-center overflow-hidden index_1 position-relative">
-                          <span
-                            className="col-md-5 position-absolute d-flex align-item-center justify-content-center gbqCTA"
-                          >
-                            <a className="ps-btn ps-btn--new glq_btn_pdp d-flex align-items-center justify-content-center">
-                              <span>Get Best Quote</span>
-                            </a>
-                          </span>
-                          <span id="pimg1"></span>
-                          <div className="d-flex align-items-center justify-content-center pdp_img_pic prd_cntr position-relative">
-                            <img
-                              className="max-width"
-                              alt=""
-                              id="1"
-                              src={prdImg}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="pdp_thmb mt15 position-relative" id="thumbnail-container1">
-                        <div className="overflow-hidden t_nail">
-                          <ul className="d-flex align-items-center">
-                            {["407430349/IC/KD/LV", "407430348/ZL/FZ/MR", "407430350/MB/GD/QB"].map((img, index) => (
-                              <li key={index} className="d-flex align-items-center overflow-hidden cp t_nl">
-                                <img
-                                  alt=""
-                                  src={`https://5.imimg.com/data5/SELLER/Default/2024/4/${img}/3759446/luxor-pro-e-refillable-white-board-marker-red-box-of-10-125x125.jpg`}
-                                />
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <ThumbNail multipleImages={multipleImages} productvideocode={product_videocode} prdImg ={prdImg}></ThumbNail>
                   <div className="col-md-6 position-relative pdp_data_sec">
                     <span className="col-md-5 position-absolute rcbckCTA">
                       <a className="ps-btn rcb_btn_pdp1 d-flex align-items-center justify-content-center">

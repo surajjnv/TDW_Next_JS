@@ -34,3 +34,24 @@ export function getBookmark(string) {
 
     return anlink;
 }
+
+export function parseYtUrl(url = null, output = null) {
+    if (!url) return false; 
+
+    if (/^www/.test(url)) {
+        url = 'https://' + url;
+    } else if (/^youtube/.test(url)) {
+        url = 'https://www.' + url;
+    } else if (/^youtu\.be/.test(url)) {
+        url = 'https://' + url;
+    }
+
+    const pattern = /^(?:https?:\/\/|\/\/)?(?:www\.|m\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|watch\/|v\/|.+;v=|watch\?v=|watch\?.+&v=|shorts\/|.+watch\?v=))([\w-]{11})(?![\w-])/;
+    const matches = url.match(pattern);
+
+    if (output === 'URL') {
+        return matches ? url : false;
+    } else {
+        return matches ? matches[1] : false;
+    }
+}
