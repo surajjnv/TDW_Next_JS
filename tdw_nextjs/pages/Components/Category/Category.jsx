@@ -23,8 +23,6 @@ export default function Category({ companydata }) {
 
     }
     if (cat_desc == '') {
-        //Show Default Category Description 
-        // cat_desc = 'of a wide range of products which include camlin permanent marker pen, luxor pro-e refillable white board marker - red - box of 10, luxor pro-e refillable white board marker - green - box of 10, luxor pro-e refillable white board marker, luxor permanent marker - black - box of 10 and camlin white board marker pack of 10 -green.';
         cat_desc = CategoryDescription(bizType, city, country, catId, prodList);
         console.log(cat_desc);
 
@@ -32,7 +30,7 @@ export default function Category({ companydata }) {
     return (
         <>
             <div className="ps-home ps-home--5 pdp">
-                <BreadCrumb Catname={cat_name}></BreadCrumb>
+                {/* <BreadCrumb Catname={cat_name}></BreadCrumb> */}
                 <div className="ps-home__content pdp">
                     <div className="container">
                         <div className="row">

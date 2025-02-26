@@ -1,7 +1,7 @@
 import { changeHttpPath } from "../Utlility_function/common_function";
 import TopNavigation from "./Topnavigation";
-
-const Header = ({ companydata, context, mainColor, cDetails }) => {
+import Breadcrumb from "./BreadCrumb";
+const Header = ({ companydata, mainColor, cDetails }) => {
   const compName =
     companydata?.DATA?.COMPANYDETAIL?.DIR_SEARCH_COMPANY || "Company Name";
   const gstNumber =
@@ -24,6 +24,7 @@ const Header = ({ companydata, context, mainColor, cDetails }) => {
   const City = companydata.DATA.COMPANYDETAIL.DIR_SEARCH_CITY || '';
   const TSCODE = companydata.DATA.COMPANYDETAIL.TSCODE || '';
   const CompanyIso = companydata.URL_DETAIL.ISO_CERT_NAME || '';
+  const pagename = companydata?.DATA?.PAGELINKTYPE;
   // const cny_logo = cDetails?.CompanyLogo;
   // console.log("company_logo" + cny_logo);
   // const { req } = context;
@@ -113,6 +114,7 @@ const Header = ({ companydata, context, mainColor, cDetails }) => {
           <TopNavigation companydata={ companydata}></TopNavigation>
         </header>
       </div>
+    <Breadcrumb  pagelinktype={pagename} companydata ={companydata}></Breadcrumb>
     </>
   );
 };
