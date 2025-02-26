@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getBookmark } from "../Utlility_function/common_function";
+import { getBookmark } from "../../Utlility_function/common_function";
 
 const ProductNavigation = ({ companydata }) => {
   if (!companydata?.DATA?.PRDNAV) return null;

@@ -1,6 +1,6 @@
 import IsqSection from "./IsqSection";
-import { changeHttpPath } from "../Utlility_function/common_function";
-import { parseYtUrl } from "../Utlility_function/common_function";
+import { changeHttpPath } from "../../Utlility_function/common_function";
+import { parseYtUrl } from "../../Utlility_function/common_function";
 import ImgSection from "./ImgSection";
 
 export default function Product({ prd }) {

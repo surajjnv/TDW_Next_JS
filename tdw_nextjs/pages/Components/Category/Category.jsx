@@ -1,15 +1,21 @@
 import "@/styles/category.css";
 import ProductList from './Productlist';
 import ProductNavigation from "./Product_navigation";
-import BreadCrumb from "./BreadCrumb";
+import BreadCrumb from "../BreadCrumb";
+import CategoryDescription from "./Default_Description";
 // import "@styles/category.css";
-
 export default function Category({ companydata }) {
     let cat_name = companydata?.DATA?.PRDSERV[0].CAT_NAME == 'New Items' ? companydata?.DATA?.PRDSERV[0].CAT_NAME : companydata?.DATA?.PRDSERV[0].CATDETAIL.CAT_NAME;
     let cat_desc = '';
     cat_desc = companydata?.DATA?.PRDSERV[0].CATDETAIL.CAT_DESC;
-    console.log("cat_desc");
-    console.log(cat_desc);
+    // console.log("cat_desc");
+    // console.log(cat_desc);
+    var bizType = companydata?.DATA?.COMPANYDETAIL?.BIZ;
+    let city = companydata?.DATA?.COMPANYDETAIL?.DIR_SEARCH_CITY;
+    let country = companydata?.DATA?.COMPANYDETAIL?.DIR_SEARCH_COUNTRY;
+    let catId = companydata?.DATA?.PRDSERV[0]?.CAT_ID;
+    var prodList = companydata?.DATA?.PRDSERV[0].PRODLIST;
+    // console.log(prodList);
     if (/<table/i.test(cat_desc)) {
         cat_desc = cat_desc
             .replace(/<table/gi, '<div class="text txt7"><div class="tbl1"><table')
@@ -18,7 +24,10 @@ export default function Category({ companydata }) {
     }
     if (cat_desc == '') {
         //Show Default Category Description 
-        cat_desc = 'of a wide range of products which include camlin permanent marker pen, luxor pro-e refillable white board marker - red - box of 10, luxor pro-e refillable white board marker - green - box of 10, luxor pro-e refillable white board marker, luxor permanent marker - black - box of 10 and camlin white board marker pack of 10 -green.';
+        // cat_desc = 'of a wide range of products which include camlin permanent marker pen, luxor pro-e refillable white board marker - red - box of 10, luxor pro-e refillable white board marker - green - box of 10, luxor pro-e refillable white board marker, luxor permanent marker - black - box of 10 and camlin white board marker pack of 10 -green.';
+        cat_desc = CategoryDescription(bizType, city, country, catId, prodList);
+        console.log(cat_desc);
+
     }
     return (
         <>
