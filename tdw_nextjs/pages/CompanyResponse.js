@@ -27,7 +27,9 @@ export default async function GetCompanyResponse(context) {
     } else {
         domainName = domainName.replace(/\./g, "-");
     }
-
+    if(pathname == '/sitemap.html'){
+        pathname = 'sitenavigation.html'
+    }
      pathname = pathname.replace(/^\//, "");
      ForbiddenRoute_beforeAPI(context);
      RedirectRoute_beforeAPI(context);
@@ -36,6 +38,7 @@ export default async function GetCompanyResponse(context) {
 
     const company_api = `http://company.imutils.com/wservce/company/detail/token/imobile@15061981/glusrid//alias/${domainName}/cat_link/${pathname}/modid/tdw/`;
     console.log("API URL:", company_api);
+    console.log("====test===");
 
     // Fetch company data
     const res = await fetch(company_api, { cache: "no-store" });

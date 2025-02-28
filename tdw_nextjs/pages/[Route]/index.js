@@ -8,6 +8,7 @@ import Aboutus from "../Components/Aboutus";
 import NotFound from "../Components/Notfound";
 import Catindex from "../Components/Catindex";
 import Enquiry from "../Components/Enquiry";
+import SiteMap from "../Components/SiteMap";
 import Custom404 from "../404"
 import Set_PrimaryColor from "../Utilities/Select_Color";
 // import "@styles/dt_style.css";
@@ -20,6 +21,13 @@ export async function getServerSideProps(context) {
     console.log(context);
     var pagename = companyData?.DATA?.PAGELINKTYPE;
     const { mainColor, auxColor } = Set_PrimaryColor(companyData);
+    let pathname = context.resolvedUrl
+    console.log("pathname:",pathname);
+    let pagename = '';
+    if(pathname == '/sitemap.html'){
+      console.log("setting pathname for sitemap !!")
+      pagename = 'sitemap';
+    }
 
     if (!companyData || pagename === undefined) {
       // Handle the case where the API returns no data
@@ -30,7 +38,7 @@ export async function getServerSideProps(context) {
       return {
         props: {  companyData,
           mainColor,
-          auxColor }, // Pass companyData as props
+          auxColor,pagename }, // Pass companyData as props
       };
     }
 
@@ -40,13 +48,15 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default function Index({  companyData, mainColor, auxColor }) {
-  //   console.log("Received companyData:", companyData);
-
-  const pagename = companyData?.DATA?.PAGELINKTYPE;
+export default function Index({  companyData, mainColor, auxColor,pagename }) {
+  //   console.log("Received companyData:", companyDa
+  var pagename_api = companyData?.DATA?.PAGELINKTYPE;
   console.log("Page Name:", pagename);
+  if(pagename == 'sitemap'){
+    pagename_api = 'sitemap';
+  }
   let pageComponent;
-  switch (pagename) {
+  switch (pagename_api) {
     case "category":
       pageComponent = <Category companydata={companyData} />;
       break;
@@ -58,6 +68,9 @@ export default function Index({  companyData, mainColor, auxColor }) {
       break;
     case "enquiry":
       pageComponent = <Enquiry />;
+      break;
+    case "sitemap":
+      pageComponent = <SiteMap companydata={companyData}></SiteMap>
       break;
     default:
       pageComponent = <Custom404 />

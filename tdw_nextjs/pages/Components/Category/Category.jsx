@@ -13,6 +13,7 @@ export default function Category({ companydata }) {
     let country = companydata?.DATA?.COMPANYDETAIL?.DIR_SEARCH_COUNTRY;
     let catId = companydata?.DATA?.PRDSERV[0]?.CAT_ID;
     var prodList = companydata?.DATA?.PRDSERV[0].PRODLIST;
+    let cat_desc1 = '';
     if (/<table/i.test(cat_desc)) {
         cat_desc = cat_desc
             .replace(/<table/gi, '<div class="text txt7"><div class="tbl1"><table')
@@ -25,15 +26,17 @@ export default function Category({ companydata }) {
 
     }
 
-    const [readMore,setReadMore]= useState(false);
-    const divref = useRef(null);  
-    useEffect(()=>{
-        if(divref.current.scrollHeight > 10){
+    const [readMore, setReadMore] = useState(false);
+    const divref = useRef(null);
+    useEffect(() => {
+        if (divref.current.scrollHeight > 10) {
             setReadMore(true);
         }
-    },[])
-    cat_desc = 'Ensure your paint markers last longer and perform like new with our Paint Marker Replacement Tip. This affordable and eco-friendly solution allows you to replace worn-out tips instead of buying new markers, saving you money in the long run. Perfect for professional artists, DIY enthusiasts, and industrial use, these replacement tips are compatible with a wide range of paint markers. Easy to install and durable, they ensure a smooth, consistent flow of paint, providing precision and control with every stroke.Features:Cost-Effective: Extend the life of your paint markers and save money.Durable & Reliable: High-quality material for long-lasting performance.Easy to Install: Simple and quick replacement to get your marker working again.Eco-Friendly: Reduce waste by reusing your existing markers.Versatile: Fits most standard paint markers, perfect for art, crafts, and professional applications.Upgrade your supplies while cutting costs with our Paint Marker Replacement Tip. Keep your projects on budget without compromising on quality!Dear Customers, Now shop from your favorite store Royal Stationers right from your  mobile. Get your produ'
-
+    }, [])
+    // cat_desc = 'Ensure your paint markers last longer and perform like new with our Paint Marker Replacement Tip. This affordable and eco-friendly solution allows you to replace worn-out tips instead of buying new markers, saving you money in the long run. Perfect for professional artists, DIY enthusiasts, and industrial use, these replacement tips are compatible with a wide range of paint markers. Easy to install and durable, they ensure a smooth, consistent flow of paint, providing precision and control with every stroke.Features:Cost-Effective: Extend the life of your paint markers and save money.Durable & Reliable: High-quality material for long-lasting performance.Easy to Install: Simple and quick replacement to get your marker working again.Eco-Friendly: Reduce waste by reusing your existing markers.Versatile: Fits most standard paint markers, perfect for art, crafts, and professional applications.Upgrade your supplies while cutting costs with our Paint Marker Replacement Tip. Keep your projects on budget without compromising on quality!Dear Customers, Now shop from your favorite store Royal Stationers right from your  mobile. Get your produ'
+    readMore && (
+        cat_desc1 = cat_desc.substring(0, 470)
+    );
 
     return (
         <>
@@ -46,23 +49,24 @@ export default function Category({ companydata }) {
                             </div>
                             <div className="col-md-12">
                                 <p
-                                    ref ={divref} className={readMore ? "clr3 lh24 hgt100 overflow-hidden position-relative he06" : "clr3 lh24 overflow-hidden position-relative he06"}
+                                    ref={divref} className={readMore ? "clr3 lh24 hgt100 overflow-hidden position-relative he06" : "clr3 lh24 overflow-hidden position-relative he06"}
                                     id="v_more"
                                 >
-                                    {cat_desc}
+                                    {readMore ? cat_desc1 : cat_desc}
+                                {readMore && (
+                                    <>
+                                        <span className="clr_main fw5">...</span>
+                                        <span
+                                            className="clr_main cp fw6"
+                                            onClick={() => {
+                                                setReadMore(false);
+                                            }}
+                                        >
+                                            Read More
+                                        </span>
+                                    </>
+                                )}
                                 </p>
-                                {readMore && 
-                                    <span className="position-absolute">
-                                    <span
-                                    className="cp clr5 fs14 fw-bold"
-                                    onClick={() => {
-                                        setReadMore(false);
-                                    }}
-                                    >
-                                    Read More
-                                    </span>
-                                </span>
-                                }
                             </div>
                         </div>
                         <div className="row mt15">
