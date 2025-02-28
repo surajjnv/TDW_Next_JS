@@ -1,14 +1,15 @@
-// import "@/styles/bootstrap_home.css"
+
 import "@/styles/globals.css";
-
-
 
 import { changeHttpPath } from "../Utlility_function/common_function";
 import { getBookmark } from "../Utlility_function/common_function";
+import generateNavLinks from "../Utlility_function/navlink";
 
 export default function SiteMap({ companydata }) {
+    var top_navigation = generateNavLinks(companydata);
     console.log(companydata);
     var catlist = companydata?.DATA?.PRDNAV;
+    var paid_showroom_url = companydata?.URL_DETAIL?.PAID_SHOWROOM_URL;
     const cat_html = catlist.map((cat, catId) => {
         var total_prod_count = cat.CAT_PRD_COUNT;
         var prdnav_prd_count = cat.PRODLIST.length;
@@ -55,10 +56,10 @@ export default function SiteMap({ companydata }) {
                             <a className="ps-btn ps-btn--warning get-q-btn" id={`showmore_${catId}`}>View More</a>
                         </div>
                     </div>
-                )
-                    
+                    )
+
                 }
-             <div id="t_cnt" style={{ display: "none" }}>{total_prod_count}</div>
+                <div id="t_cnt" style={{ display: "none" }}>{total_prod_count}</div>
             </div>
         );
     });
@@ -78,13 +79,20 @@ export default function SiteMap({ companydata }) {
                         <div className="col-md-12">
                             <ul className="stemap_txt">
                                 <li className="mb10">
-                                    <a href="https://www.royalstationers.co.in/" className="d-flex fw5">Home</a>
+                                    <a href={paid_showroom_url} className="d-flex fw5">Home</a>
                                 </li>
                                 <li className="mb10">
-                                    <a href="about-us.html" className="d-flex fw5">About Us</a>
+                                    <a href={top_navigation.profile.fl_name} className="d-flex fw5">{top_navigation.profile.fl_display_name}</a>
                                     <ul className="an-sitemap-ul">
-                                        <li className="pt5"><a href="testimonial.html" className="d-flex">Testimonial</a></li>
-                                        <li className="pt5"><a href="franchisee.html" className="d-flex">Distributor Enquiry Form</a></li>
+                                        {
+                                            top_navigation.profile.sub_profile.map((subprofile, index) => {
+                                                return (
+
+                                                    <li className="pt5"><a href={subprofile.fl_name} className="d-flex">{subprofile.fl_display_name}</a></li>
+
+                                                )
+                                            })
+                                        }
                                     </ul>
                                 </li>
                                 <li className="mb10">
