@@ -25,6 +25,7 @@ export default async function GetCompanyResponse(context) {
     if (domainName === "localhost:3000" || domainName === "localhost:3001") {
         domainName = "royalstationers-co-in";
     } else {
+        domainName = domainName.replace(/^www\./, '');
         domainName = domainName.replace(/\./g, "-");
     }
     if(pathname == '/sitemap.html'){

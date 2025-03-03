@@ -7,7 +7,7 @@ export default function Set_PrimaryColor(companyData) {
 
     const STYLE_ID = companyData?.URL_DETAIL?.PC_CLNT_STYLE_ID;
     // const STYLE_ID = '2447';
-    // console.log("style_id:", STYLE_ID);
+    console.log("style_id:", STYLE_ID);
 
     const colorMapping = {
         "2447": { main: "#c2450f", aux: "rgba(194,65,15,.1)" },

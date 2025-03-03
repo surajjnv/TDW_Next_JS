@@ -17,7 +17,7 @@ const Header = ({ companydata, mainColor, cDetails }) => {
     .join(", ");
 
   const locality = companydata?.DATA?.COMPANYDETAIL?.GLUSR_USR_LOCALITY || "";
-  const CompanyName = companydata.DATA.COMPANYDETAIL.DIR_SEARCH_COMPANY || '';
+  const CompanyName = companydata?.DATA.COMPANYDETAIL.DIR_SEARCH_COMPANY || '';
   const CompanyLogo = changeHttpPath(companydata.DATA.COMPANYDETAIL.COMPANY_LOGO) || '';
   const CompanyLogo120 = changeHttpPath(companydata.DATA.COMPANYDETAIL.COMPANY_LOGO_120 )|| '';
   const State = companydata.DATA.COMPANYDETAIL.DIR_SEARCH_STATE || '';
