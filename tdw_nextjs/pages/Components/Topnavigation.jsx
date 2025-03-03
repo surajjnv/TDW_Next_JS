@@ -1,4 +1,4 @@
-import generateNavLinks from '../Utlility_function/navlink'
+import generateNavLinks from '../../Utils/Utlility_function/navlink'
 import Search_bar from './Search_bar';
 
 export default function TopNavigation({ companydata }) {
@@ -71,7 +71,7 @@ export default function TopNavigation({ companydata }) {
                   Our Product Range
                 </a>
                 <div class="mega-menu"><div class="container"><div class="mega-menu__row">
-                  {prdNav.slice(0, 7).map((prdcat, index) => {
+                  {prdNav?.slice(0, 7).map((prdcat, index) => {
                     // Handling conditions similar to PHP
                     if (pagetype === "category") {
                       if (flag_page === 1) {
@@ -115,7 +115,7 @@ export default function TopNavigation({ companydata }) {
                           <h4>{prdcat.CAT_NAME}</h4>
                         </a>
                         <ul className="sub-menu--mega">
-                          {prdcatlist.slice(0, 5).map((catprd, i) => (
+                          {prdcatlist?.slice(0, 5).map((catprd, i) => (
                             <li key={i}>
                               <a href={`${catflname1}#${catprd.ITEM_NAME}`}>
                                 {catprd.ITEM_NAME}

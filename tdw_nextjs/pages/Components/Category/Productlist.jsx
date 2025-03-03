@@ -10,7 +10,7 @@ function ProductList({ companydata }) {
   return (
     <>
       {
-        prdList.map((prd, prdId) => {
+        prdList?.map((prd, prdId) => {
           return <Product prd={prd}></Product>
         }
         )

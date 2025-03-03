@@ -1,12 +1,12 @@
 import IsqSection from "./IsqSection";
-import { changeHttpPath } from "../../Utlility_function/common_function";
-import { parseYtUrl } from "../../Utlility_function/common_function";
+import { changeHttpPath } from "../../../Utils/Utlility_function/common_function";
+import { parseYtUrl } from "../../../Utils/Utlility_function/common_function";
 import ImgSection from "./ImgSection";
 
 export default function Product({ prd }) {
-    let prdname = prd.ITEM_NAME;
-    let prdImg = prd.ITEM_BIMG_500X500 != '' ? changeHttpPath(prd.ITEM_BIMG_500X500) : '';
-    let prdPrice = prd.PC_ITEM_FOB_PRICE_FORMATTED;
+    let prdname = prd?.ITEM_NAME;
+    let prdImg = prd?.ITEM_BIMG_500X500 != '' ? changeHttpPath(prd?.ITEM_BIMG_500X500) : '';
+    let prdPrice = prd?.PC_ITEM_FOB_PRICE_FORMATTED;
     let prdDesc = prd?.ITEM_SDESC;
     if (/<table/i.test(prdDesc)) {
         prdDesc = prdDesc
@@ -14,7 +14,7 @@ export default function Product({ prd }) {
             .replace(/<\/table>/gi, '</table></div></div>');
 
     }
-    let product_videocode = prd.PRD_BULK_VID != '' ? parseYtUrl(prd.PRD_BULK_VID[0].PC_ITEM_VIDEO_PATH) : '';
+    let product_videocode = prd?.PRD_BULK_VID != '' ? parseYtUrl(prd?.PRD_BULK_VID[0].PC_ITEM_VIDEO_PATH) : '';
 
     //Thumbmail Images 
 
@@ -40,10 +40,10 @@ export default function Product({ prd }) {
     // Push bulk product images if available
     if (prd?.PRD_BULK_IMG && prd.PRD_BULK_IMG.length > 0) {
         prd.PRD_BULK_IMG.forEach((images_oth) => {
-            let s_img_125 = images_oth?.PC_ITEM_IMAGE_125X125 ? changeHttpPath(images_oth.PC_ITEM_IMAGE_125X125) : '';
-            let s_img_250 = images_oth?.PC_ITEM_IMAGE_250X250 ? changeHttpPath(images_oth.PC_ITEM_IMAGE_250X250) : '';
-            let b_img_500 = images_oth?.PC_ITEM_IMAGE_500X500 ? changeHttpPath(images_oth.PC_ITEM_IMAGE_500X500) : '';
-            let b_img_1000 = images_oth?.PC_ITEM_IMAGE_1000X1000 ? changeHttpPath(images_oth.PC_ITEM_IMAGE_1000X1000) : '';
+            let s_img_125 = images_oth?.PC_ITEM_IMAGE_125X125 ? changeHttpPath(images_oth?.PC_ITEM_IMAGE_125X125) : '';
+            let s_img_250 = images_oth?.PC_ITEM_IMAGE_250X250 ? changeHttpPath(images_oth?.PC_ITEM_IMAGE_250X250) : '';
+            let b_img_500 = images_oth?.PC_ITEM_IMAGE_500X500 ? changeHttpPath(images_oth?.PC_ITEM_IMAGE_500X500) : '';
+            let b_img_1000 = images_oth?.PC_ITEM_IMAGE_1000X1000 ? changeHttpPath(images_oth?.PC_ITEM_IMAGE_1000X1000) : '';
 
             if (s_img_125) {
                 multipleImages.push({
@@ -58,11 +58,11 @@ export default function Product({ prd }) {
 
     return (
         <>
-            <a id={`${prd.ITEM_NAME}`}></a>
+            <a id={`${prd?.ITEM_NAME}`}></a>
             <section className="pdp_img_txt mb30">
                 <h3>
                     <span className="fw-bold clr4">
-                        {prd.ITEM_NAME}
+                        {prd?.ITEM_NAME}
                     </span>
                 </h3>
                 <div className="row">

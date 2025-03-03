@@ -1,4 +1,4 @@
-import generateNavLinks from "../Utlility_function/navlink";
+import generateNavLinks from "../../Utils/Utlility_function/navlink";
 
 export default function Footer({ companydata }) {
     var topNav = generateNavLinks(companydata);

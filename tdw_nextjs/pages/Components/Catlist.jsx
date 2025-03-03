@@ -1,5 +1,5 @@
-import { changeHttpPath } from "../Utlility_function/common_function";
-import { getBookmark } from "../Utlility_function/common_function";
+import { changeHttpPath } from "../../Utils/Utlility_function/common_function";
+import { getBookmark } from "../../Utils/Utlility_function/common_function";
 
 export default function CategoryList({ subcat,pc_clnt_enable }) {
     if (!subcat || subcat.length === 0) return null;

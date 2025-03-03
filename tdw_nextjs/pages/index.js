@@ -1,12 +1,12 @@
-import { ForbiddenRoute_afterAPI } from "./getForbiddenRoute";
-import { RedirectRoute_afterAPI } from "./getRedirectionRoute";
+import { ForbiddenRoute_afterAPI } from "../styles/getForbiddenRoute";
+import { RedirectRoute_afterAPI } from "../Utils/Utlility_function/getRedirectionRoute";
 import Footer from "./Components/Footer"; // Import the Footer component
 import Homepage from "./Components/Index";
 import Header from "./Components/Header";
 import GetCompanyResponse  from "./CompanyResponse";
-import "@/styles/globals.css";
-import "@/styles/bootstrap_home.css"
-import Set_PrimaryColor from "./Utilities/Select_Color.js"
+// import "@/styles/globals.css";
+// import "@/styles/bootstrap_home.css"
+import Set_PrimaryColor from "../Utils/Utlility_function/Select_Color.js"
 
 
 export async function getServerSideProps(context) {

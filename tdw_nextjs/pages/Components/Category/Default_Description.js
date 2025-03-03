@@ -40,7 +40,7 @@ const CategoryDescription = ( bizType, city, country, catId, prodList ) => {
   );
 
   const uniqueProductNames = Array.from(
-  new Set(prodList.map((item) => (typeof item === "string" ? item.toLowerCase() : item.ITEM_NAME.toLowerCase())))
+  new Set(prodList?.map((item) => (typeof item === "string" ? item.toLowerCase() : item.ITEM_NAME.toLowerCase())))
 );
   let description = prefix;
 

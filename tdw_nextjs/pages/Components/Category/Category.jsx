@@ -1,4 +1,4 @@
-import "@/styles/category.css";
+// import "@/styles/category.css";
 import ProductList from './Productlist';
 import ProductNavigation from "./Product_navigation";
 import CategoryDescription from "./Default_Description";

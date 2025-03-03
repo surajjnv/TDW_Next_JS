@@ -10,7 +10,7 @@ import Catindex from "../Components/Catindex";
 import Enquiry from "../Components/Enquiry";
 import SiteMap from "../Components/SiteMap";
 import Custom404 from "../404"
-import Set_PrimaryColor from "../Utilities/Select_Color";
+import Set_PrimaryColor from "../../Utils/Utlility_function/Select_Color";
 // import "@styles/dt_style.css";
 
   

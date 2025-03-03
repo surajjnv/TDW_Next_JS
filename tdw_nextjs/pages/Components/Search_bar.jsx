@@ -3,9 +3,9 @@ import { useEffect, useRef, useState } from "react";
 export default function Search_bar({ prdNav }) {
     // Prepare autoSuggest array
     const autoSuggest = [];
-    prdNav.forEach(cat => {
+    prdNav?.forEach(cat => {
         autoSuggest.push(cat.CAT_NAME); // Ensure category name is included
-        cat.PRODLIST.forEach((prd) => {
+        cat?.PRODLIST?.forEach((prd) => {
             autoSuggest.push(prd.ITEM_NAME);
         });
     });

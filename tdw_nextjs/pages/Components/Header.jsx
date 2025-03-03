@@ -1,4 +1,4 @@
-import { changeHttpPath } from "../Utlility_function/common_function";
+import { changeHttpPath } from "../../Utils/Utlility_function/common_function";
 import TopNavigation from "./Topnavigation";
 import Breadcrumb from "./BreadCrumb";
 const Header = ({ companydata, mainColor, cDetails }) => {
@@ -18,12 +18,12 @@ const Header = ({ companydata, mainColor, cDetails }) => {
 
   const locality = companydata?.DATA?.COMPANYDETAIL?.GLUSR_USR_LOCALITY || "";
   const CompanyName = companydata?.DATA.COMPANYDETAIL.DIR_SEARCH_COMPANY || '';
-  const CompanyLogo = changeHttpPath(companydata.DATA.COMPANYDETAIL.COMPANY_LOGO) || '';
-  const CompanyLogo120 = changeHttpPath(companydata.DATA.COMPANYDETAIL.COMPANY_LOGO_120 )|| '';
-  const State = companydata.DATA.COMPANYDETAIL.DIR_SEARCH_STATE || '';
-  const City = companydata.DATA.COMPANYDETAIL.DIR_SEARCH_CITY || '';
-  const TSCODE = companydata.DATA.COMPANYDETAIL.TSCODE || '';
-  const CompanyIso = companydata.URL_DETAIL.ISO_CERT_NAME || '';
+  const CompanyLogo = changeHttpPath(companydata?.DATA.COMPANYDETAIL.COMPANY_LOGO) || '';
+  const CompanyLogo120 = changeHttpPath(companydata?.DATA.COMPANYDETAIL.COMPANY_LOGO_120 )|| '';
+  const State = companydata?.DATA.COMPANYDETAIL.DIR_SEARCH_STATE || '';
+  const City = companydata?.DATA.COMPANYDETAIL.DIR_SEARCH_CITY || '';
+  const TSCODE = companydata?.DATA.COMPANYDETAIL.TSCODE || '';
+  const CompanyIso = companydata?.URL_DETAIL.ISO_CERT_NAME || '';
   const pagename = companydata?.DATA?.PAGELINKTYPE;
   // const cny_logo = cDetails?.CompanyLogo;
   // console.log("company_logo" + cny_logo);

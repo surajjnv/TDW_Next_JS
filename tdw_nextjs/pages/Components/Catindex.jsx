@@ -1,18 +1,18 @@
 import CategoryList from "./Catlist";
 
-import "@/styles/bootstrap_home.css"
-import "@/styles/globals.css";
+// import "@/styles/bootstrap_home.css"
+// import "@/styles/globals.css";
 
 export default function CatIndex({companydata}) {
-  console.log(companydata.DATA.PRDSERV);
+  // console.log(companydata.DATA.PRDSERV);
   var subcat = companydata?.DATA?.PRDSERV;
   let pc_clnt_enable = companydata?.URL_DETAIL?.PC_CLNT_ENABLE;
   console.log("from catindex");
-  subcat.forEach(cat => {
-        cat.PRODLIST.map((prd,prdId)=>{
-           console.log(prd.ITEM_NAME);
-        })
-  });
+  subcat?.forEach(cat => {
+    cat?.PRODLIST?.forEach((prd, prdId) => {
+        console.log(prd.ITEM_NAME);
+    });
+});
   return (
     <>
       <div className="ps-home__content">
