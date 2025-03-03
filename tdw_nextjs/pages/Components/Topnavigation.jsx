@@ -1,5 +1,5 @@
 import generateNavLinks from '../Utlility_function/navlink'
-
+import Search_bar from './Search_bar';
 
 export default function TopNavigation({ companydata }) {
   var navLink = generateNavLinks(companydata);
@@ -9,6 +9,7 @@ export default function TopNavigation({ companydata }) {
   let catcnt = 0;
   let catnmary = [];
   let flag_page = 0;
+  var prdNav = companydata?.DATA?.PRDNAV;
 
   // Check if sub_profile exists before iterating
   const profilelist = (navLink.profile?.sub_profile || [])
@@ -70,7 +71,7 @@ export default function TopNavigation({ companydata }) {
                   Our Product Range
                 </a>
                 <div class="mega-menu"><div class="container"><div class="mega-menu__row">
-                  {companydata.DATA.PRDNAV.slice(0, 7).map((prdcat, index) => {
+                  {prdNav.slice(0, 7).map((prdcat, index) => {
                     // Handling conditions similar to PHP
                     if (pagetype === "category") {
                       if (flag_page === 1) {
@@ -145,32 +146,7 @@ export default function TopNavigation({ companydata }) {
             </ul>
           </nav>
         </div>
-
-        <div className="ps-navigation__right">
-          <div className="ps-header__search header__search22">
-            <form id="cse-search-box" method="get" name="frm">
-              <div className="ps-search-table">
-                <div className="input-group">
-                  <input
-                    className="form-control ps-input"
-                    style={{ width: "304px" }}
-                    type="text"
-                    id="ss"
-                    placeholder="Search Products/Services"
-                    autoComplete="off"
-                  />
-                  <div className="input-group-append d-flex justify-content-center cp">
-                    <span className="search-btn d-flex justify-content-center align-items-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
-                        <path d="..." fill="white"></path>
-                      </svg>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
+        <Search_bar prdNav = {prdNav}></Search_bar>
       </div>
     </div>
   );

@@ -18,7 +18,7 @@ export async function getServerSideProps(context) {
   try {
     const companyData = await GetCompanyResponse(context);
     // console.log("Company Data from API:", companyData);
-    console.log(context);
+    // console.log(context);
     var pagename = companyData?.DATA?.PAGELINKTYPE;
     const { mainColor, auxColor } = Set_PrimaryColor(companyData);
     let pathname = context.resolvedUrl
