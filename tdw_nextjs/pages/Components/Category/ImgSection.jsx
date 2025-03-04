@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Image from "next/image";
+// import Image from "next/image";
 
 export default function ImgSection({ multipleImages, productVideoCode, prdImg, alt, sampleResize, pageNameForm, countType, googleTrackEvent }) {
-    if (!multipleImages || multipleImages.length <= 1) return null;
+    if (!multipleImages ) return null;
 
     let count = 0;
     let v = 0;
@@ -21,14 +21,12 @@ export default function ImgSection({ multipleImages, productVideoCode, prdImg, a
                         </span>
                         <span id="pimg1"></span>
                         <div className="d-flex align-items-center justify-content-center pdp_img_pic prd_cntr position-relative">
-                            <Image
+                            <img
                                 className="max-width"
                                 alt={alt || "Product Image"}
                                 id="1"
                                 src={mainImg}
-                                width={500} 
-                                height={500} 
-                                priority // Ensures main image loads first
+                                loading="lazy"
                             />
                         </div>
                     </div>
@@ -45,10 +43,9 @@ export default function ImgSection({ multipleImages, productVideoCode, prdImg, a
                                     v++;
                                     return (
                                         <li key={i} className="d-flex align-items-center overflow-hidden cp pdp_vdo t_nl">
-                                            <Image
+                                            <img
                                                 src={`https://i.ytimg.com/vi/${productVideoCode}/default.jpg`}
-                                                width={100}
-                                                height={100}
+                                                loading="lazy"
                                                 alt="Foil Print"
                                                 onMouseOver={() => setmainImg(bImg)}
                                                 onClick={() => {
@@ -61,12 +58,10 @@ export default function ImgSection({ multipleImages, productVideoCode, prdImg, a
                                 } else if (simages?.s_img_125) {
                                     return (
                                         <li key={i} className={`d-flex align-items-center overflow-hidden cp t_nl ${actv}`}>
-                                            <Image
+                                            <img
                                                 alt={alt}
                                                 {...sampleResize}
                                                 src={simages.s_img_125}
-                                                width={100}
-                                                height={100}
                                                 loading="lazy"
                                                 onMouseOver={() => setmainImg(bImg)}
                                                 onClick={() => {
